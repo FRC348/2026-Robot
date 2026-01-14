@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.photonvision.*;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.math.MathUtil;
+import frc.robot.RobotContainer;
 
 
 /**
@@ -91,14 +93,14 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Calculate drivetrain commands from Joystick values
-        double forward = controller.getLeftY() * Constants.Swerve.kMaxLinearSpeed;
-        double strafe = -controller.getLeftX() * Constants.Swerve.kMaxLinearSpeed;
-        double turn = -controller.getRightX() * Constants.Swerve.kMaxAngularSpeed;
+        double forward = RobotContainer.m_driverController.getLeftY() * Constants.Swerve.kMaxLinearSpeed;
+        double strafe = -RobotContainer.m_driverController.getLeftX() * Constants.Swerve.kMaxLinearSpeed;
+        double turn = -RobotContainer.m_driverController.getRightX() * Constants.Swerve.kMaxAngularSpeed;
 
         // Read in relevant data from the Camera
         boolean targetVisible = false;
         double targetYaw = 0.0;
-        var results = camera.getAllUnreadResults();
+        var results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
         if (!results.isEmpty()) {
           
             // Camera processed a new frame since last
@@ -117,11 +119,14 @@ public class Robot extends TimedRobot {
         }
 
         // Auto-align when requested
-        if (controller.getAButton() && targetVisible) {
+        if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
             // Driver wants auto-alignment to tag 7
             // And, tag 7 is in sight, so we can turn toward it.
             // Override the driver's turn command with an automatic one that turns toward the tag.
-            turn = -1.0 * targetYaw * VISION_TURN_kP * Constants.Swerve.kMaxAngularSpeed;
+            turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.Swerve.kMaxAngularSpeed;
+
+          // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
+
         }
 
         // Command drivetrain motors based on target speeds

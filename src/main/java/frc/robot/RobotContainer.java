@@ -20,7 +20,7 @@ public class RobotContainer {
     private final DriveSubsystem m_robotDrive = new DriveSubsystem();
     public static final VisionSS rc_visionSS = new VisionSS();
 
-  private final CommandXboxController m_driverController =
+  public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

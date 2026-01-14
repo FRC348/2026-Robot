@@ -14,6 +14,11 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     
   }
+
+  public static class VisionConstants {
+    public static final double visionTurnKP = 0;
+  }
+
   public static final class DriveConstants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
