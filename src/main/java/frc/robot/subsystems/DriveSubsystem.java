@@ -252,7 +252,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The turn rate of the robot, in degrees per second
    */
   public double getTurnRate() {
-    return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    return m_gyro.getAngularVelocityZWorld().getValue().in(Units.DegreesPerSecond) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
   public void resetPose(Pose2d pose) {
