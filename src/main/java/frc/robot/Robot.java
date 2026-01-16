@@ -93,9 +93,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Calculate drivetrain commands from Joystick values
-        double forward = RobotContainer.m_driverController.getLeftY() * Constants.Swerve.kMaxLinearSpeed;
-        double strafe = -RobotContainer.m_driverController.getLeftX() * Constants.Swerve.kMaxLinearSpeed;
-        double turn = -RobotContainer.m_driverController.getRightX() * Constants.Swerve.kMaxAngularSpeed;
+        //double forward = RobotContainer.m_driverController.getLeftY() * Constants.Swerve.kMaxLinearSpeed;
+        //double strafe = -RobotContainer.m_driverController.getLeftX() * Constants.Swerve.kMaxLinearSpeed;
+        //double turn = -RobotContainer.m_driverController.getRightX() * Constants.Swerve.kMaxAngularSpeed;
 
         // Read in relevant data from the Camera
         boolean targetVisible = false;
@@ -123,14 +123,14 @@ public class Robot extends TimedRobot {
             // Driver wants auto-alignment to tag 7
             // And, tag 7 is in sight, so we can turn toward it.
             // Override the driver's turn command with an automatic one that turns toward the tag.
-            turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.Swerve.kMaxAngularSpeed;
+            //turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.Swerve.kMaxAngularSpeed;
 
           // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 
         }
 
         // Command drivetrain motors based on target speeds
-        drivetrain.drive(forward, strafe, turn);
+        //drivetrain.drive(forward, strafe, turn);
 
         // Put debug information to the dashboard
         SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
