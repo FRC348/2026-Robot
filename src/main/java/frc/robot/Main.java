@@ -18,7 +18,8 @@ public final class Main {
    * DO NOT TOUCH
    */
   public static void main(String... args) {
-    System.out.println("starting up");
+    System.out.println("starting up!");
     RobotBase.startRobot(Robot::new);
+    
   }
 }
