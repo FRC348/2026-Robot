@@ -121,4 +121,7 @@ public final class Constants {
     public static final double kMaxAngleRads =
         Units.degreesToRadians(40.9 + 180); // 40.9 deg from horiz
   }
+  public static final class IntakeConstants {
+    public static final int testmotorcanid = 0;
+  }
 }
