@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.IntakeC;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
@@ -21,6 +22,8 @@ public class RobotContainer {
     public static final VisionSS rc_visionSS = new VisionSS();
     public static final PIDSS rc_PIDSS = new PIDSS();
     public static final IntakeSS rc_intakeSS = new IntakeSS();
+
+  public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
 
   public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
