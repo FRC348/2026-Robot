@@ -20,6 +20,7 @@ public class RobotContainer {
     private final DriveSubsystem m_robotDrive = new DriveSubsystem();
     public static final VisionSS rc_visionSS = new VisionSS();
     public static final PIDSS rc_PIDSS = new PIDSS();
+    public static final IntakeSS rc_intakeSS = new IntakeSS();
 
   public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
