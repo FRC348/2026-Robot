@@ -8,7 +8,7 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 public final class Configs {
-  public static final class MAXSwerveModule {
+  public static final class SwerveModule {
     public static final SparkFlexConfig drivingConfig = new SparkFlexConfig();
     public static final SparkMaxConfig turningConfig = new SparkMaxConfig();
 
@@ -54,4 +54,6 @@ public final class Configs {
           .positionWrappingInputRange(0, turningFactor);
     }
   }
+
+
 }
