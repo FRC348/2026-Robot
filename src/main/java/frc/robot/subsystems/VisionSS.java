@@ -37,8 +37,8 @@ public class VisionSS extends SubsystemBase{
     Transform3d alternateCameraToTarget = target.getAlternateCameraToTarget();
 
     // Capture pre-process camera stream image
-    camera.takeInputSnapshot();
+    //camera.takeInputSnapshot();
 
     // Capture post-process camera stream image
-    camera.takeOutputSnapshot();
+    //camera.takeOutputSnapshot();
 }
