@@ -38,7 +38,8 @@ public class FLEXSwerveModule {
    * controller. This configuration is specific to the REV FLEXSwerve Module built with NEOs, SPARKS
    * MAX, and a Through Bore Encoder.
    */
-  public FLEXSwerveModule(int drivingCANId, int turningCANId, double chassisAngularOffset) {
+  @SuppressWarnings("removal")
+public FLEXSwerveModule(int drivingCANId, int turningCANId, double chassisAngularOffset) {
     m_drivingSpark = new SparkFlex(drivingCANId, MotorType.kBrushless);
     m_turningSpark = new SparkFlex(turningCANId, MotorType.kBrushless);
 
@@ -52,11 +53,11 @@ public class FLEXSwerveModule {
     // applying the configuration to bring the SPARK to a known good state. Persist
     // the settings to the SPARK to avoid losing them on a power cycle.
     m_drivingSpark.configure(
-        Configs.MAXSwerveModule.drivingConfig,
+        Configs.SwerveModule.drivingConfig,
         ResetMode.kResetSafeParameters,
         PersistMode.kPersistParameters);
     m_turningSpark.configure(
-        Configs.MAXSwerveModule.turningConfig,
+        Configs.SwerveModule.turningConfig,
         ResetMode.kResetSafeParameters,
         PersistMode.kPersistParameters);
 
