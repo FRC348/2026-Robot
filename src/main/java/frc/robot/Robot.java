@@ -134,7 +134,7 @@ public class Robot extends TimedRobot {
     //     //DriveSubsystem.drive(forward, strafe, turn);
 
      // Put debug information to the dashboard
-    SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
+    //SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
     }
 
   @Override

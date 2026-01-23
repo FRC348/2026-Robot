@@ -11,6 +11,7 @@ import org.photonvision.targeting.TargetCorner;
 
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSS extends SubsystemBase{
@@ -22,6 +23,8 @@ public class VisionSS extends SubsystemBase{
         //Check for targets within latest result
         if (result.isEmpty()) {
             System.out.println("No targets");
+            Boolean targetVisible = false;
+            SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
             return;
         }
         //boolean hasTargets = result.hasTargets();
@@ -30,27 +33,32 @@ public class VisionSS extends SubsystemBase{
         
         //Get location information from target
         if (target != null) {
+            Boolean targetVisible = true;
             double yaw = target.getYaw();
-        double pitch = target.getPitch();
-        double area = target.getArea();
-        double skew = target.getSkew();
-        List<TargetCorner> corners = target.getDetectedCorners();
-        //Get Apriltag data and more information
-        int targetID = target.getFiducialId();
-        double poseAmbiguity = target.getPoseAmbiguity();
-        Transform3d bestCameraToTarget = target.getBestCameraToTarget();
-        Transform3d alternateCameraToTarget = target.getAlternateCameraToTarget();
+            double pitch = target.getPitch();
+            double area = target.getArea();
+            double skew = target.getSkew();
+            List<TargetCorner> corners = target.getDetectedCorners();
+            //Get Apriltag data and more information
+            int targetID = target.getFiducialId();
+            double poseAmbiguity = target.getPoseAmbiguity();
+            Transform3d bestCameraToTarget = target.getBestCameraToTarget();
+            Transform3d alternateCameraToTarget = target.getAlternateCameraToTarget();
 
-        System.out.println(targetID);
+            System.out.println(targetID);
+            SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
+            
 
 
-        // Capture pre-process camera stream image
-        camera.takeInputSnapshot();
+            // Capture pre-process camera stream image
+            camera.takeInputSnapshot();
 
-        // Capture post-process camera stream image
-        camera.takeOutputSnapshot();
+            // Capture post-process camera stream image
+            camera.takeOutputSnapshot();
 
-        }
+        } 
+            
+
         
     }
     
