@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSS extends SubsystemBase{
-    public PhotonCamera camera = new PhotonCamera("GENERAL_WEBCAM");
+    public PhotonCamera camera = new PhotonCamera("Cam1");
 
     public void PrintTarget() {
         //Latest result from camera
