@@ -22,7 +22,6 @@ public class RobotContainer {
   public static final VisionSS rc_visionSS = new VisionSS();
   public static final PIDSS rc_PIDSS = new PIDSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
-
   public static final ElevPIDSS m_ElevPIDSS = new ElevPIDSS();
   
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
