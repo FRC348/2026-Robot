@@ -184,7 +184,7 @@ public class DriveSubsystem extends SubsystemBase {
                     xSpeedDelivered,
                     ySpeedDelivered,
                     rotDelivered,
-                    Rotation2d.fromDegrees(360 - m_gyro.getYaw().getValue().in(Units.Degrees)))
+                    Rotation2d.fromDegrees( m_gyro.getYaw().getValue().in(Units.Degrees)-360))
                 : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
     SwerveDriveKinematics.desaturateWheelSpeeds(
         swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);

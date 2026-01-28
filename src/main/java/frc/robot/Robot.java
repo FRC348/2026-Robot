@@ -104,41 +104,41 @@ public class Robot extends TimedRobot {
         double turn = -RobotContainer.m_driverController.getRightX() * Constants.DriveConstants.kMaxAngularSpeed;
 
         // Read in relevant data from the Camera
-        boolean targetVisible = false;
-        double targetYaw = 0.0;
-        var results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
-        if (!results.isEmpty()) {
+        // boolean targetVisible = false;
+        // double targetYaw = 0.0;
+        // var results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
+        // if (!results.isEmpty()) {
           
-            // Camera processed a new frame since last
-            // Get the last one in the list.
-            var result = results.get(results.size() - 1);
-            if (result.hasTargets()) {
-                // At least one AprilTag was seen by the camera
-                for (var target : result.getTargets()) {
-                    if (target.getFiducialId() == 7) {
-                        // Found Tag 7, record its information
-                        targetYaw = target.getYaw();
-                        targetVisible = true;
-                    }
-                }
-            } 
-        } 
+        //     // Camera processed a new frame since last
+        //     // Get the last one in the list.
+        //     var result = results.get(results.size() - 1);
+        //     if (result.hasTargets()) {
+        //         // At least one AprilTag was seen by the camera
+        //         for (var target : result.getTargets()) {
+        //             if (target.getFiducialId() == 7) {
+        //                 // Found Tag 7, record its information
+        //                 targetYaw = target.getYaw();
+        //                 targetVisible = true;
+                 //   }
+             //   }
+      //      } 
+      //  } 
         // Auto-align when requested
-        if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
+     //   if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
             // Driver wants auto-alignment to tag 7
             // And, tag 7 is in sight, so we can turn toward it.
             // Override the driver's turn command with an automatic one that turns toward the tag.
-            turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
+       //     turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
 
           // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 
-        }
+    //    }
 
         // Command drivetrain motors based on target speeds
         //DriveSubsystem.drive(forward, strafe, turn);
 
         // Put debug information to the dashboard
-        SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
+      //  SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
     }
 
   @Override
