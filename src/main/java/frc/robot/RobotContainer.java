@@ -7,7 +7,6 @@ package frc.robot;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.IntakeC;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
@@ -60,6 +59,9 @@ public class RobotContainer {
         // Driver controller button commands
     m_driverController.leftStick().whileTrue(m_robotDrive.setXCommand());
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
+
+    m_driverController.a().whileTrue(rc_intakeC);
+    m_driverController.b().whileTrue(rc_intakeC);
 
   }
 
