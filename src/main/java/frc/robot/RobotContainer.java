@@ -21,7 +21,6 @@ public class RobotContainer {
   public static final VisionSS rc_visionSS = new VisionSS();
   public static final PIDSS rc_PIDSS = new PIDSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
-
   public static final ElevPIDSS m_ElevPIDSS = new ElevPIDSS();
   
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
@@ -31,6 +30,14 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    rc_visionSS.setDefaultCommand(
+      new RunCommand(
+          () ->
+            rc_visionSS.PrintTarget(),
+            rc_visionSS
+            
+      )
+    );
     // Configure the trigger bindings
     configureBindings();
     // Configure default commands
