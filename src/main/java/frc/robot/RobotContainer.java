@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.IntakeC;
+import frc.robot.commands.LauncherC;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
@@ -23,8 +24,10 @@ public class RobotContainer {
   public static final PIDSS rc_PIDSS = new PIDSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
   public static final ElevPIDSS m_ElevPIDSS = new ElevPIDSS();
+  public static final LauncherSS rc_launcherSS = new LauncherSS();
   
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
+  public static final LauncherC rc_launcherC = new LauncherC(rc_launcherSS, 0);
 
   public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -67,6 +70,9 @@ public class RobotContainer {
         // Driver controller button commands
     m_driverController.leftStick().whileTrue(m_robotDrive.setXCommand());
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
+
+    m_driverController.a().onTrue(new LauncherC(rc_launcherSS, 0.5));
+    m_driverController.b().onTrue(new LauncherC(rc_launcherSS, 0.75));
 
   }
 
