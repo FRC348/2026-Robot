@@ -8,13 +8,18 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSS extends SubsystemBase {
-     public final SparkMax testmotor = new SparkMax(Constants.IntakeConstants.testmotorcanid,MotorType.kBrushless);
+  /** Creates a new AlgaeC. */
+  public final SparkMax Fuel = new SparkMax(Constants.Intake, MotorType.kBrushless);
 
-     public void start(double speed){
-          testmotor.set(speed);
-     }
+    public void IntakeForward(){
+        Fuel.set(0.5);
+    }
 
-     public void stop(){
-          testmotor.set(0);
-     }
+    public void IntakeReverse() {
+        Fuel.set(-0.5);
+    }
+
+    public void IntakeStop() {
+        Fuel.set(0);
+    }
 }
