@@ -6,8 +6,8 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ClimbPIDC;
 import frc.robot.commands.IntakeC;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
@@ -20,9 +20,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static final VisionSS rc_visionSS = new VisionSS();
-  public static final PIDSS rc_PIDSS = new PIDSS();
+  public static final ClimbPIDSS rc_ClimbPIDSS = new ClimbPIDSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
-  public static final ElevPIDSS m_ElevPIDSS = new ElevPIDSS();
+  public static final ClimbPIDSS rc_pidSS = new ClimbPIDSS();
   
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
 
@@ -67,6 +67,9 @@ public class RobotContainer {
         // Driver controller button commands
     m_driverController.leftStick().whileTrue(m_robotDrive.setXCommand());
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
+    //Climb PID
+    m_driverController.a().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 20));
+    m_driverController.b().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 15));
 
   }
 
