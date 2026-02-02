@@ -8,6 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ClimbPIDC;
 import frc.robot.commands.IntakeC;
+import frc.robot.commands.IntakePIDC;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
@@ -21,6 +22,7 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static final VisionSS rc_visionSS = new VisionSS();
   public static final ClimbPIDSS rc_ClimbPIDSS = new ClimbPIDSS();
+  public static final IntakePIDSS rc_IntakePIDSS = new IntakePIDSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
   public static final ClimbPIDSS rc_pidSS = new ClimbPIDSS();
   
