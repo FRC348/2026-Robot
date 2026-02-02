@@ -14,7 +14,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     
   }
-
+    public static final int Intake = 0;
   public static class VisionConstants {
     public static final double visionTurnKP = 0;
   }

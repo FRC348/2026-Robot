@@ -71,6 +71,9 @@ public class RobotContainer {
     m_driverController.a().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 20));
     m_driverController.b().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 15));
 
+    m_driverController.a().whileTrue(rc_intakeC);
+    m_driverController.b().whileTrue(rc_intakeC);
+
   }
 
   /**
