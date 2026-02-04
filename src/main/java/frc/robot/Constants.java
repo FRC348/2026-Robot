@@ -20,8 +20,8 @@ public final class Constants {
   }
 
   public static class LauncherConstants {
-    public static final int launcher1CANID = 10;
-    public static final int launcher2CANID = 11;
+    public static final int launcher1CANID = 9;
+    public static final int launcher2CANID = 10;
   }
 
   public static final class DriveConstants {
