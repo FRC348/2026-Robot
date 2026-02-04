@@ -140,7 +140,7 @@ public class Robot extends TimedRobot {
         }
         
           // Command drivetrain motors based on target speeds
-          DriveSubsystem.drive(forward, strafe, turn);
+          //DriveSubsystem.drive(forward, strafe, turn);
 
     //Put debug information to the dashboard
     SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
