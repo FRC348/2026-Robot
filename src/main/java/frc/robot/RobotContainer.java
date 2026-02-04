@@ -7,8 +7,6 @@ package frc.robot;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.IntakeC;
-import frc.robot.commands.LauncherC;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
@@ -19,29 +17,18 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  public static final DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static final VisionSS rc_visionSS = new VisionSS();
-  public static final PIDSS rc_PIDSS = new PIDSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
-  public static final ElevPIDSS m_ElevPIDSS = new ElevPIDSS();
   public static final LauncherSS rc_launcherSS = new LauncherSS();
   
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
-  public static final LauncherC rc_launcherC = new LauncherC(rc_launcherSS, 0);
 
   public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    rc_visionSS.setDefaultCommand(
-      new RunCommand(
-          () ->
-            rc_visionSS.PrintTarget(),
-            rc_visionSS
-            
-      )
-    );
     // Configure the trigger bindings
     configureBindings();
     // Configure default commands
@@ -57,7 +44,7 @@ public class RobotContainer {
                         m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                     -MathUtil.applyDeadband(
                         m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                    true),
+                    false),
             m_robotDrive));
   }
   /**
@@ -70,9 +57,10 @@ public class RobotContainer {
         // Driver controller button commands
     m_driverController.leftStick().whileTrue(m_robotDrive.setXCommand());
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
+    //Climb PID
 
-    m_driverController.a().onTrue(new LauncherC(rc_launcherSS, 0.5));
-    m_driverController.b().onTrue(new LauncherC(rc_launcherSS, 0.75));
+    m_driverController.a().whileTrue(rc_intakeC);
+    m_driverController.b().whileTrue(rc_intakeC);
 
   }
 

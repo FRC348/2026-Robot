@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
+import java.util.Random;
+import java.util.random.RandomGenerator;
+
 import org.photonvision.*;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
@@ -17,7 +21,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.math.MathUtil;
 import frc.robot.RobotContainer;
-
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -29,6 +32,7 @@ public class Robot extends TimedRobot {
 
   private final RobotContainer m_robotContainer;
 
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -39,6 +43,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     DriveSubsystem.m_gyro.reset();
+    
+
   }
 
   /**
@@ -85,6 +91,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -114,6 +122,7 @@ public class Robot extends TimedRobot {
     //                     // Found Tag 7, record its information
     //                     targetYaw = target.getYaw();
     //                     targetVisible = true;
+    //                     System.out.println(targetYaw);
     //                 }
     //             }
     //         } 
@@ -129,12 +138,16 @@ public class Robot extends TimedRobot {
     //       // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 
     //     }
+        
 
-    //     // Command drivetrain motors based on target speeds
-    //     //DriveSubsystem.drive(forward, strafe, turn);
 
-     // Put debug information to the dashboard
-    //SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
+    //       // Command drivetrain motors based on target speeds
+    //     RobotContainer.m_robotDrive.drive(forward, strafe, turn, false);
+
+    //     // The issue is that this entire function is static, it is not the boolean's fault
+
+    // //Put debug information to the dashboard
+    // SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
     }
 
   @Override
