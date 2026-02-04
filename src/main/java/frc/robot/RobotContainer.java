@@ -70,8 +70,8 @@ public class RobotContainer {
     m_driverController.leftStick().whileTrue(m_robotDrive.setXCommand());
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
     //Climb PID
-    m_driverController.a().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 20));
-    m_driverController.b().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 15));
+    m_driverController.povUp().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 10));
+    m_driverController.povDown().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 0));
 
     m_driverController.a().whileTrue(rc_intakeC);
     m_driverController.b().whileTrue(rc_intakeC);
