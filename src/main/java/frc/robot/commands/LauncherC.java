@@ -21,13 +21,7 @@ public class LauncherC extends Command {
         if (RobotContainer.m_driverController.leftBumper().getAsBoolean() == true) {
             RobotContainer.rc_launcherSS.stop();
         }
-        else if (RobotContainer.m_driverController.leftTrigger().getAsBoolean() == true) {
-            RobotContainer.rc_launcherSS.stop();
-        }
         else if (RobotContainer.m_driverController.rightBumper().getAsBoolean() == true) {
-            RobotContainer.rc_launcherSS.stop();
-        }
-        else if (RobotContainer.m_driverController.rightTrigger().getAsBoolean() == true) {
             RobotContainer.rc_launcherSS.stop();
         }
         else {
