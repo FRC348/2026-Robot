@@ -118,6 +118,7 @@ public class Robot extends TimedRobot {
             if (result.hasTargets()) {
                 // At least one AprilTag was seen by the camera
                 for (var target : result.getTargets()) {
+                  
                     if (target.getFiducialId() == 7) {
                         // Found Tag 7, record its information
                         targetYaw = target.getYaw();

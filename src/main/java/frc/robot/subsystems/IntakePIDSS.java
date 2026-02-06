@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class IntakePIDSS extends SubsystemBase {
 
-  public final SparkMax Motor1 = new SparkMax(Constants.Motor1, MotorType.kBrushless);
+  public final SparkMax Motor1 = new SparkMax(Constants.kIntakeMotor, MotorType.kBrushless);
 
   private final PIDController Velo_PID = new PIDController(Constants.kP, Constants.kI, Constants.kD);
   private final PIDController Pos_PID = new PIDController(Constants.kP, Constants.kI, Constants.kD);

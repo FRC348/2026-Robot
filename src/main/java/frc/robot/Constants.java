@@ -14,7 +14,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     
   }
-    public static final int Intake = 0;
+    public static final int Intake = 45;
   public static class VisionConstants {
     public static final double visionTurnKP = 0;
   }
@@ -122,7 +122,7 @@ public final class Constants {
         Units.degreesToRadians(40.9 + 180); // 40.9 deg from horiz
   }
   public static final class IntakeConstants {
-    public static final int testmotorcanid = 0;
+    public static final int testmotorcanid = 42;
   }
 
 public static final class ClimbPIDConstants {
@@ -137,5 +137,6 @@ public static final class ClimbPIDConstants {
 public static double kD;
 public static double kP;
 public static double kI;
-public static int Motor1;
+public static int kClimbMotor = 43;
+public static int kIntakeMotor = 44;
 }

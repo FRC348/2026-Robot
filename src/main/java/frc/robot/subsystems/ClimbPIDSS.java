@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class ClimbPIDSS extends SubsystemBase {
 
-  public final SparkMax Motor1 = new SparkMax(Constants.Motor1, MotorType.kBrushless);
+  public final SparkMax Motor1 = new SparkMax(Constants.kClimbMotor, MotorType.kBrushless);
 
   private final PIDController Velo_PID = new PIDController(Constants.kP, Constants.kI, Constants.kD);
   private final PIDController Pos_PID = new PIDController(Constants.kP, Constants.kI, Constants.kD);
