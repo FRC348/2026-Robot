@@ -13,7 +13,6 @@ import java.util.Random;
 import java.util.random.RandomGenerator;
 
 import org.photonvision.*;
-import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -42,7 +41,6 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    DriveSubsystem.m_gyro.reset();
     
 
   }
