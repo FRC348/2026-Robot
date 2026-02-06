@@ -8,6 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.IntakeC;
 import frc.robot.commands.LauncherC;
+import frc.robot.commands.LauncherSpeedC;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
@@ -17,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer {
+
   // The robot's subsystems and commands are defined here...
   public static final VisionSS rc_visionSS = new VisionSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
@@ -24,6 +26,7 @@ public class RobotContainer {
   
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
   public static final LauncherC rc_launcherC = new LauncherC(rc_launcherSS);
+  public static final LauncherSpeedC rc_launcherspeedC = new LauncherSpeedC(rc_launcherSS, 0.5);
 
   public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -45,11 +48,18 @@ public class RobotContainer {
         // Driver controller button commands
     //Climb PID
 
-    m_driverController.a().whileTrue(rc_launcherC);
-    m_driverController.b().whileTrue(rc_launcherC);
-    m_driverController.y().whileTrue(rc_launcherC);
-    m_driverController.x().whileTrue(rc_launcherC);
-    m_driverController.povUp().whileTrue(rc_launcherC);
+    m_driverController.povUp().onTrue(new LauncherSpeedC(rc_launcherSS, 0.1));
+    m_driverController.povDown().onTrue(new LauncherSpeedC(rc_launcherSS, -0.1));
+    m_driverController.povRight().onTrue(new LauncherSpeedC(rc_launcherSS, 0.01));
+    m_driverController.povLeft().onTrue(new LauncherSpeedC(rc_launcherSS, -0.01));
+    m_driverController.y().onTrue(new LauncherSpeedC(rc_launcherSS, 0.001));
+    m_driverController.a().onTrue(new LauncherSpeedC(rc_launcherSS, -0.001));
+    m_driverController.b().onTrue(new LauncherSpeedC(rc_launcherSS, 0.0001));
+    m_driverController.x().onTrue(new LauncherSpeedC(rc_launcherSS, -0.0001));
+    m_driverController.leftTrigger().onTrue(rc_launcherC);
+    m_driverController.rightTrigger().onTrue(rc_launcherC);
+    m_driverController.leftBumper().onTrue(rc_launcherC);
+    m_driverController.rightBumper().onTrue(rc_launcherC);
 
 
   }

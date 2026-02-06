@@ -146,6 +146,9 @@ public class Robot extends TimedRobot {
 
     // //Put debug information to the dashboard
     // SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
+
+
+      SmartDashboard.putNumber("Launcher Speed", RobotContainer.rc_launcherSS.getSpeed());
     }
 
   @Override
