@@ -126,4 +126,18 @@ public final class Constants {
   public static final class IntakeConstants {
     public static final int testmotorcanid = 0;
   }
+
+public static final class ClimbPIDConstants {
+
+  public static final int PIDmotor1 = 0;
+  public static final int PIDmotor2 = 0;
+  public static final double kI = 0;
+  public static final double kD = 0;
+  public static double kP;
+  }
+
+public static double kD;
+public static double kP;
+public static double kI;
+public static int Motor1;
 }

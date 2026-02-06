@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
+import java.util.Random;
+import java.util.random.RandomGenerator;
+
 import org.photonvision.*;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
@@ -17,7 +21,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.math.MathUtil;
 import frc.robot.RobotContainer;
-
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -29,6 +32,7 @@ public class Robot extends TimedRobot {
 
   private final RobotContainer m_robotContainer;
 
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -39,6 +43,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     DriveSubsystem.m_gyro.reset();
+    
+
   }
 
   /**
@@ -85,6 +91,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -94,47 +102,48 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Calculate drivetrain commands from Joystick values
-    //     double forward = RobotContainer.m_driverController.getLeftY() * Constants.DriveConstants.kMaxLinearSpeed;
-    //     double strafe = -RobotContainer.m_driverController.getLeftX() * Constants.DriveConstants.kMaxLinearSpeed;
-    //     double turn = -RobotContainer.m_driverController.getRightX() * Constants.DriveConstants.kMaxAngularSpeed;
+        double forward = RobotContainer.m_driverController.getLeftY() * Constants.DriveConstants.kMaxLinearSpeed;
+        double strafe = -RobotContainer.m_driverController.getLeftX() * Constants.DriveConstants.kMaxLinearSpeed;
+        double turn = -RobotContainer.m_driverController.getRightX() * Constants.DriveConstants.kMaxAngularSpeed;
 
-    //     // Read in relevant data from the Camera
-    //     boolean targetVisible = false;
-    //     double targetYaw = 0.0;
-    //     var results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
-    //     if (!results.isEmpty()) {
+        // Read in relevant data from the Camera
+        boolean targetVisible = false;
+        double targetYaw = 0.0;
+        var results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
+        if (!results.isEmpty()) {
           
-    //         // Camera processed a new frame since last
-    //         // Get the last one in the list.
-    //         var result = results.get(results.size() - 1);
-    //         if (result.hasTargets()) {
-    //             // At least one AprilTag was seen by the camera
-    //             for (var target : result.getTargets()) {
-    //                 if (target.getFiducialId() == 7) {
-    //                     // Found Tag 7, record its information
-    //                     targetYaw = target.getYaw();
-    //                     targetVisible = true;
-    //                 }
-    //             }
-    //         } 
+            // Camera processed a new frame since last
+            // Get the last one in the list.
+            var result = results.get(results.size() - 1);
+            if (result.hasTargets()) {
+                // At least one AprilTag was seen by the camera
+                for (var target : result.getTargets()) {
+                    if (target.getFiducialId() == 7) {
+                        // Found Tag 7, record its information
+                        targetYaw = target.getYaw();
+                        targetVisible = true;
+                        System.out.println(targetYaw);
+                    }
+                }
+            } 
 
-    //     } 
-    //     // Auto-align when requested
-    //     if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
-    //         // Driver wants auto-alignment to tag 7
-    //         // And, tag 7 is in sight, so we can turn toward it.
-    //         // Override the driver's turn command with an automatic one that turns toward the tag.
-    //         turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
+        } 
+        // Auto-align when requested
+        if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
+            // Driver wants auto-alignment to tag 7
+            // And, tag 7 is in sight, so we can turn toward it.
+            // Override the driver's turn command with an automatic one that turns toward the tag.
+            turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
 
-    //       // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
+          // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 
-    //     }
+        }
+        
+          // Command drivetrain motors based on target speeds
+          //DriveSubsystem.drive(forward, strafe, turn);
 
-    //     // Command drivetrain motors based on target speeds
-    //     //DriveSubsystem.drive(forward, strafe, turn);
-
-     // Put debug information to the dashboard
-    //SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
+    //Put debug information to the dashboard
+    SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
     }
 
   @Override

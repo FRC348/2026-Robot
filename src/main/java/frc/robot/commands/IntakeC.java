@@ -1,6 +1,9 @@
 package frc.robot.commands;
 
+import java.text.BreakIterator;
+
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.IntakeSS;
 
@@ -19,14 +22,17 @@ public class IntakeC extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.m_driverController.a().getAsBoolean()) {
-      RobotContainer.rc_intakeSS.IntakeReverse();
-    } else {
+    if (RobotContainer.m_driverController.povRight().getAsBoolean() == true) {
       RobotContainer.rc_intakeSS.IntakeForward();
+    } 
+    else if (RobotContainer.m_driverController.povLeft().getAsBoolean() == true) {
+        RobotContainer.rc_intakeSS.IntakeReverse();
+      }
+      else if (RobotContainer.m_driverController.x().getAsBoolean() == true) {
+      RobotContainer.rc_intakeSS.IntakeStop();
     }
   }
-
-  // Called once the command ends or is interrupted.
+// Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     RobotContainer.rc_intakeSS.IntakeStop();
@@ -39,3 +45,5 @@ public class IntakeC extends Command {
   }
   
 }
+
+
