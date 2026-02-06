@@ -79,6 +79,9 @@ public class RobotContainer {
     m_driverController.povRight().whileTrue(rc_intakeC);
     m_driverController.povLeft().whileTrue(rc_intakeC);
 
+    m_driverController.a().whileTrue(rc_intakeC);
+    m_driverController.b().whileTrue(rc_intakeC);
+
   }
 
   /**
