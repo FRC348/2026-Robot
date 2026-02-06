@@ -10,7 +10,7 @@ import frc.robot.Constants;
 
 public class LauncherSS extends SubsystemBase{
 
-    public double speed = .5;
+    public double speed = 8;
 
     public static final SparkMax launcher1 = new SparkMax(Constants.LauncherConstants.launcher1CANID, MotorType.kBrushless);
     public static final SparkMax launcher2 = new SparkMax(Constants.LauncherConstants.launcher2CANID, MotorType.kBrushless);
@@ -24,8 +24,8 @@ public class LauncherSS extends SubsystemBase{
       if (speed < 0) {
         speed = 0;
       }
-      if (speed > 1) {
-        speed = 1;
+      if (speed > 13) {
+        speed = 13;
       }
       return speed;
     }
@@ -35,8 +35,8 @@ public class LauncherSS extends SubsystemBase{
     }
    
     public void spin() {
-      launcher1.set(-speed);
-      launcher2.set(speed);
+      launcher1.setVoltage(-speed);
+      launcher2.setVoltage(speed);
     }
 
     public void stop(){

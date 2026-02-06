@@ -56,10 +56,11 @@ public class RobotContainer {
     m_driverController.a().onTrue(new LauncherSpeedC(rc_launcherSS, -0.001));
     m_driverController.b().onTrue(new LauncherSpeedC(rc_launcherSS, 0.0001));
     m_driverController.x().onTrue(new LauncherSpeedC(rc_launcherSS, -0.0001));
-    m_driverController.leftTrigger().onTrue(rc_launcherC);
-    m_driverController.rightTrigger().onTrue(rc_launcherC);
-    m_driverController.leftBumper().onTrue(rc_launcherC);
-    m_driverController.rightBumper().onTrue(rc_launcherC);
+    rc_launcherSS.setDefaultCommand(rc_launcherC);
+    //m_driverController.leftTrigger().onTrue(rc_launcherC);
+    //m_driverController.rightTrigger().onTrue(rc_launcherC);
+    //m_driverController.leftBumper().onTrue(rc_launcherC);
+    //m_driverController.rightBumper().onTrue(rc_launcherC);
 
 
   }

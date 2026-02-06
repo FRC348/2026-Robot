@@ -148,7 +148,7 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
 
 
-      SmartDashboard.putNumber("Launcher Speed", RobotContainer.rc_launcherSS.getSpeed());
+      SmartDashboard.putNumber("Launcher Voltage", RobotContainer.rc_launcherSS.getSpeed());
     }
 
   @Override
