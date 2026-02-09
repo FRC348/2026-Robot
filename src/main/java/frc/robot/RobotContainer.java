@@ -48,14 +48,14 @@ public class RobotContainer {
         // Driver controller button commands
     //Climb PID
 
-    m_driverController.povUp().onTrue(new LauncherSpeedC(rc_launcherSS, 0.1));
-    m_driverController.povDown().onTrue(new LauncherSpeedC(rc_launcherSS, -0.1));
-    m_driverController.povRight().onTrue(new LauncherSpeedC(rc_launcherSS, 0.01));
-    m_driverController.povLeft().onTrue(new LauncherSpeedC(rc_launcherSS, -0.01));
-    m_driverController.y().onTrue(new LauncherSpeedC(rc_launcherSS, 0.001));
-    m_driverController.a().onTrue(new LauncherSpeedC(rc_launcherSS, -0.001));
-    m_driverController.b().onTrue(new LauncherSpeedC(rc_launcherSS, 0.0001));
-    m_driverController.x().onTrue(new LauncherSpeedC(rc_launcherSS, -0.0001));
+    m_driverController.povUp().onTrue(new LauncherSpeedC(rc_launcherSS, 1));
+    m_driverController.povDown().onTrue(new LauncherSpeedC(rc_launcherSS, -1));
+    m_driverController.povRight().onTrue(new LauncherSpeedC(rc_launcherSS, 0.1));
+    m_driverController.povLeft().onTrue(new LauncherSpeedC(rc_launcherSS, -0.1));
+    m_driverController.y().onTrue(new LauncherSpeedC(rc_launcherSS, 0.01));
+    m_driverController.a().onTrue(new LauncherSpeedC(rc_launcherSS, -0.01));
+    m_driverController.b().onTrue(new LauncherSpeedC(rc_launcherSS, 0.001));
+    m_driverController.x().onTrue(new LauncherSpeedC(rc_launcherSS, -0.001));
     rc_launcherSS.setDefaultCommand(rc_launcherC);
     //m_driverController.leftTrigger().onTrue(rc_launcherC);
     //m_driverController.rightTrigger().onTrue(rc_launcherC);
