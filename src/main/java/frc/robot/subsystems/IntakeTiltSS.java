@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class IntakePIDSS extends SubsystemBase {
+public class IntakeTiltSS extends SubsystemBase {
 
   public final SparkMax Motor1 = new SparkMax(Constants.kIntakeMotor, MotorType.kBrushless);
 
