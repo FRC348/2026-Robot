@@ -8,7 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ClimbPIDC;
 import frc.robot.commands.IntakeC;
-import frc.robot.commands.IntakePIDC;
+import frc.robot.commands.IntakeTiltC;
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
@@ -22,7 +22,7 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static final VisionSS rc_visionSS = new VisionSS();
   public static final ClimbPIDSS rc_ClimbPIDSS = new ClimbPIDSS();
-  public static final IntakePIDSS rc_IntakePIDSS = new IntakePIDSS();
+  public static final IntakeTiltSS rc_IntakeTiltSS = new IntakeTiltSS();
   public static final IntakeSS rc_intakeSS = new IntakeSS();
   /// ???? public static final ClimbPIDSS rc_pidSS = new ClimbPIDSS();
   
@@ -73,8 +73,8 @@ public class RobotContainer {
     m_driverController.povUp().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 20));
     m_driverController.povDown().onTrue(new ClimbPIDC(rc_ClimbPIDSS, () -> 15));
 
-    m_driverController.povRight().onTrue(new IntakePIDC(rc_IntakePIDSS, () -> 10));
-    m_driverController.povLeft().onTrue(new IntakePIDC(rc_IntakePIDSS, () -> 0));
+    m_driverController.povRight().onTrue(new IntakeTiltC(rc_IntakeTiltSS, () -> 10));
+    m_driverController.povLeft().onTrue(new IntakeTiltC(rc_IntakeTiltSS, () -> 0));
 
     m_driverController.povRight().whileTrue(rc_intakeC);
     m_driverController.povLeft().whileTrue(rc_intakeC);
