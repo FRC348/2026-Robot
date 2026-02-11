@@ -12,12 +12,19 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+
+
     
   }
     public static final int Intake = 45;
 
   public static class VisionConstants {
     public static final double visionTurnKP = 0;
+    public static final double cameraPitchRadians = 123;
+    public static final double cameraHeightMeters = 6.7;
+    public static final double targetHeightMeters = 6.7;
+
+
   }
 
   public static final class DriveConstants {

@@ -8,10 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
 import java.util.Random;
 import java.util.random.RandomGenerator;
-
+import frc.robot.commands.*;
 import org.photonvision.*;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
@@ -20,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.geometry.Rotation2d;
 import frc.robot.RobotContainer;
 
 /**
@@ -110,6 +110,7 @@ public class Robot extends TimedRobot {
         boolean targetVisible = false;
         double targetYaw = 0.0;
         var results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
+        
         if (!results.isEmpty()) {
           
             // Camera processed a new frame since last
@@ -123,7 +124,6 @@ public class Robot extends TimedRobot {
                         // Found Tag 7, record its information
                         targetYaw = target.getYaw();
                         targetVisible = true;
-                        System.out.println(targetYaw);
                     }
                 }
             } 
@@ -139,6 +139,10 @@ public class Robot extends TimedRobot {
           // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 
         }
+        //climb if requested, and a tag is in sight
+        else if (RobotContainer.m_driverController.povUp().getAsBoolean() == true && targetVisible == true);
+          new ClimbPIDC(RobotContainer.rc_ClimbPIDSS, () -> 20);
+  
         
           // Command drivetrain motors based on target speeds
           //DriveSubsystem.drive(forward, strafe, turn);
