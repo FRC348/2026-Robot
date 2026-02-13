@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 import frc.robot.commands.*;
+import frc.robot.subsystems.DriveSubsystem;
+
 import org.photonvision.*;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
