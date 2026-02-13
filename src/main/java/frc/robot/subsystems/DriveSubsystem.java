@@ -12,7 +12,7 @@ import com.pathplanner.lib.config.ModuleConfig;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-
+import frc.robot.subsystems.MAXSwerveModule;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -26,14 +26,12 @@ import edu.wpi.first.units.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Configs.MAXSwerveModule;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
-
 public class DriveSubsystem extends SubsystemBase {
 
   // Create MAXSwerveModules
-  public final MAXSwerveModule m_frontLeft =
+  public final MAXSwerveModule m_frontLeft = 
       new MAXSwerveModule(
           DriveConstants.kFrontLeftDrivingCanId,
           DriveConstants.kFrontLeftTurningCanId,
@@ -56,6 +54,11 @@ public class DriveSubsystem extends SubsystemBase {
           DriveConstants.kRearRightDrivingCanId,
           DriveConstants.kRearRightTurningCanId,
           DriveConstants.kBackRightChassisAngularOffset);
+
+
+
+
+          
 
   // The gyro sensor
   public static final Pigeon2 m_gyro = new Pigeon2(0);
