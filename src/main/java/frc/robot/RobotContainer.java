@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private static final DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static final VisionSS rc_visionSS = new VisionSS();
   public static final ClimbPIDSS rc_ClimbPIDSS = new ClimbPIDSS();
   public static final IntakeTiltSS rc_IntakeTiltSS = new IntakeTiltSS();
