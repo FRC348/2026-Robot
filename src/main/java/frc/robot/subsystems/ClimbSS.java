@@ -4,10 +4,11 @@ import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ClimbSS extends SubsystemBase {
 
-    public final SparkFlex climbmotor = new SparkFlex(0, MotorType.kBrushless);
+    public final SparkFlex climbmotor = new SparkFlex(Constants.kClimbMotorCANID, MotorType.kBrushless);
     
     public void spin() {
         climbmotor.set(0.5);
