@@ -149,4 +149,11 @@ public static double kP;
 public static double kI;
 public static int kClimbMotorCANID = 43;
 public static int kIntakeMotorCANID = 44;
+
+public static final class HubCoords {
+  public static double redHubX = 468.565 / 12;
+  public static double redHubY = 158.32 / 12;
+  public static double blueHubX = 181.555 / 12;
+  public static double blueHubY = 163.2 / 12;
+}
 }
