@@ -31,15 +31,14 @@ public class VisionSS extends SubsystemBase{
     public static final Transform3d kRobotToCam = new Transform3d(new Translation3d(0.5, 0.0, 0.5), new Rotation3d(0, 0, 0));
     PhotonPoseEstimator photonEstimator = new PhotonPoseEstimator(kTagLayout, kRobotToCam);
     public Optional<EstimatedRobotPose> robotPose = Optional.empty();
-    public Optional<EstimatedRobotPose> estimateCoprocMultiTagPose(
-        PhotonPipelineResult result) {
 
-    if (!result.hasTargets()) {
-        return Optional.empty();
+    public Optional<EstimatedRobotPose> estimateCoprocMultiTagPose(PhotonPipelineResult result) {
+        if (!result.hasTargets()) {
+            return Optional.empty();
+        }
+
+        return photonEstimator.update(result);
     }
-
-    return photonEstimator.update(result);
-}
 
     public void PrintTarget() {
         //Latest result from camera
@@ -77,23 +76,17 @@ public class VisionSS extends SubsystemBase{
             System.out.println(targetxdistance);
             System.out.println(robotPose);
             SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
-            
-
 
             // Capture pre-process camera stream image
             camera.takeInputSnapshot();
 
             // Capture post-process camera stream image
             camera.takeOutputSnapshot();
-
         } 
-            
-
-        
     }
 
-public Optional<EstimatedRobotPose> getRobotPose() {
-    return robotPose;
-}
+    public Optional<EstimatedRobotPose> getRobotPose() {
+        return robotPose;
+    }
 }
      

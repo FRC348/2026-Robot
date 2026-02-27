@@ -6,6 +6,10 @@
 
 package frc.robot.subsystems;
 
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.ModuleConfig;
@@ -79,21 +83,9 @@ public class DriveSubsystem extends SubsystemBase {
     // ...
     // Load the RobotConfig from the GUI settings. You should probably
     // store this in your Constants file
-    RobotConfig config =
-        new RobotConfig(
-            74,
-            6.8,
-            new ModuleConfig(
-                Constants.ModuleConstants.kWheelDiameterMeters / 2,
-                0.5,
-                getHeading(),
-                DCMotor.getNEO(1),
-                20,
-                4),
-            new Translation2d(27 / 2, 27 / 2),
-            new Translation2d(27 / 2, -27 / 2),
-            new Translation2d(-27 / 2, 27 / 2),
-            new Translation2d(-27 / 2, -27 / 2));
+    RobotConfig config;
+    try {
+      config = RobotConfig.fromGUISettings();
 
     // Configure AutoBuilder last
     AutoBuilder.configure(
@@ -124,6 +116,15 @@ public class DriveSubsystem extends SubsystemBase {
         },
         this // Reference to this subsystem to set requirements
         );
+        
+      } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
   }
 
   @Override
