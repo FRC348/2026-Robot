@@ -13,6 +13,8 @@ import java.util.random.RandomGenerator;
 import frc.robot.commands.*;
 import frc.robot.subsystems.DriveSubsystem;
 import org.photonvision.*;
+import org.photonvision.targeting.PhotonPipelineResult;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -106,6 +108,7 @@ public class Robot extends TimedRobot {
         double strafe = -RobotContainer.m_driverController.getLeftX() * Constants.DriveConstants.kMaxLinearSpeed;
         double turn = -RobotContainer.m_driverController.getRightX() * Constants.DriveConstants.kMaxAngularSpeed;
 
+
         // Read in relevant data from the Camera
         boolean targetVisible = false;
         double targetYaw = 0.0;
@@ -117,6 +120,7 @@ public class Robot extends TimedRobot {
             // Get the last one in the list.
             var result = results.get(results.size() - 1);
             if (result.hasTargets()) {
+                RobotContainer.rc_visionSS.robotPose = RobotContainer.rc_visionSS.estimateCoprocMultiTagPose(result);
                 // At least one AprilTag was seen by the camera
                 for (var target : result.getTargets()) {
                   
