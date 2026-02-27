@@ -90,7 +90,7 @@ public class DriveSubsystem extends SubsystemBase {
     // Configure AutoBuilder last
     AutoBuilder.configure(
         this::getPose, // Robot pose supplier
-        this::resetPose, // Method to reset odometry (will be called if your auto has a starting
+        this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting
         // pose)
         this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
         (speeds, feedforwards) ->
@@ -146,6 +146,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The pose.
    */
   public Pose2d getPose() {
+    System.out.println(m_odometry.getPoseMeters());
     return m_odometry.getPoseMeters();
   }
 
@@ -164,6 +165,7 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearRight.getPosition()
         },
         pose);
+      System.out.printf("Reset Odometry: %s -> %s\n", pose, getPose());
   }
 
   /**
@@ -175,6 +177,10 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fieldRelative Whether the provided x and y speeds are relative to the field.
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
+    System.out.println(xSpeed);
+    System.out.println(ySpeed);
+    System.out.println(rot);
+    System.out.println(fieldRelative);
     // Convert the commanded speeds into the correct units for the drivetrain
     double xSpeedDelivered = xSpeed * DriveConstants.kMaxSpeedMetersPerSecond;
     double ySpeedDelivered = ySpeed * DriveConstants.kMaxSpeedMetersPerSecond;
@@ -258,15 +264,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void resetPose(Pose2d pose) {
-    m_odometry.resetPosition(
-        Rotation2d.fromDegrees(m_gyro.getYaw().getValue().in(Units.Degrees) % 360),
-        new SwerveModulePosition[] {
-          m_frontLeft.getPosition(),
-          m_frontRight.getPosition(),
-          m_rearLeft.getPosition(),
-          m_rearRight.getPosition()
-        },
-        pose);
+    // m_odometry.resetPosition(
+    //     Rotation2d.fromDegrees(m_gyro.getYaw().getValue().in(Units.Degrees) % 360),
+    //     new SwerveModulePosition[] {
+    //       m_frontLeft.getPosition(),
+    //       m_frontRight.getPosition(),
+    //       m_rearLeft.getPosition(),
+    //       m_rearRight.getPosition()
+    //     },
+    //     pose);
   }
 
   public ChassisSpeeds getRobotRelativeSpeeds() {

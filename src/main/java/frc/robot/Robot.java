@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 import frc.robot.commands.*;
+import org.photonvision.*;
+
+import com.pathplanner.lib.commands.FollowPathCommand;
+
 import frc.robot.subsystems.DriveSubsystem;
 import org.photonvision.*;
 import org.photonvision.targeting.PhotonPipelineResult;
@@ -67,7 +71,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    //FollowPathCommand.warmupCommand().schedule();
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -134,11 +140,11 @@ public class Robot extends TimedRobot {
 
         } 
         // Auto-align when requested
-        if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
+     //   if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
             // Driver wants auto-alignment to tag 7
             // And, tag 7 is in sight, so we can turn toward it.
             // Override the driver's turn command with an automatic one that turns toward the tag.
-            turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
+       //     turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
 
           // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 

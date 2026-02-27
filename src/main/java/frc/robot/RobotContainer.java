@@ -12,6 +12,9 @@ import frc.robot.commands.IntakeTiltC;
 import frc.robot.commands.LauncherC;
 import frc.robot.commands.LauncherSpeedC;
 import frc.robot.subsystems.*;
+
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -115,6 +118,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return null;
+    System.out.println("getAutonomousCommand");
+    return new PathPlannerAuto("Test Auto");
   }
 }
