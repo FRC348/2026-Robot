@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Optional;
 
 import org.photonvision.*;
+import org.photonvision.PhotonPoseEstimator.PoseStrategy;
 import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
 import org.photonvision.targeting.TargetCorner;
@@ -37,14 +38,16 @@ public class VisionSS extends SubsystemBase{
             return Optional.empty();
         }
 
-        return photonEstimator.update(result);
+        return photonEstimator.estimateCoprocMultiTagPose(result);
     }
 
     public void PrintTarget() {
         //Latest result from camera
         List<PhotonPipelineResult> result = camera.getAllUnreadResults();
+        System.out.println(result.size());
+
         //Check for targets within latest result
-        if (result.isEmpty()) {
+        if (result.isEmpty() || !result.get(0).hasTargets()) {
             System.out.println("No targets");
             Boolean targetVisible = false;
             SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
@@ -72,8 +75,8 @@ public class VisionSS extends SubsystemBase{
             //camera height and target height must be changed at a later date
             double targetxdistance = Math.sqrt((targetHypotenuse*targetHypotenuse) - (Constants.VisionConstants.targetHeightMeters*Constants.VisionConstants.targetHeightMeters));
             System.out.println(targetID);
-            System.out.println(targetHypotenuse);
-            System.out.println(targetxdistance);
+            //System.out.println(targetHypotenuse);
+            //System.out.println(targetxdistance);
             System.out.println(robotPose);
             SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
 
