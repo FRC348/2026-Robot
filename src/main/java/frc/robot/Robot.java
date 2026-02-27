@@ -151,7 +151,7 @@ public class Robot extends TimedRobot {
         
         //climb if requested, and a tag is in sight
         else if (RobotContainer.m_driverController.povUp().getAsBoolean() == true && targetVisible == true);
-          new ClimbPIDC(RobotContainer.rc_ClimbPIDSS, () -> 20);
+          new ClimbC(RobotContainer.rc_climbSS);
   
         
           // Command drivetrain motors based on target speeds
