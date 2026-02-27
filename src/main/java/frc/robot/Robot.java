@@ -148,7 +148,7 @@ public class Robot extends TimedRobot {
 
           // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 
-        }
+        
         //climb if requested, and a tag is in sight
         else if (RobotContainer.m_driverController.povUp().getAsBoolean() == true && targetVisible == true);
           new ClimbPIDC(RobotContainer.rc_ClimbPIDSS, () -> 20);
