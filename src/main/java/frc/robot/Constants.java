@@ -16,8 +16,8 @@ public final class Constants {
 
     
   }
-    public static final int IntakeCANID = 45;
-    public static final int KickerCANID = 44;
+    public static final int IntakeCANID = 46;
+    public static final int KickerCANID = 45;
 
   public static class VisionConstants {
     public static final double visionTurnKP = 0;

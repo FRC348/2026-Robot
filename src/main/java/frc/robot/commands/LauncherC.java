@@ -12,14 +12,21 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.LauncherSS;
-
+import frc.robot.subsystems.VisionSS;
 public class LauncherC extends Command {
     public double speed;
-    public PhotonCamera camera = new PhotonCamera("Camera_1");
-    List<PhotonPipelineResult> result = camera.getAllUnreadResults();
-    PhotonTrackedTarget target = result.get(0).getBestTarget();
-    final double targetPitchRadians = target.getPitch();
-    double targetHypotenuse = PhotonUtils.calculateDistanceToTargetMeters(Constants.VisionConstants.cameraHeightMeters, Constants.VisionConstants.targetHeightMeters, Constants.VisionConstants.cameraPitchRadians, targetPitchRadians);
+    List<PhotonPipelineResult> results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
+    PhotonTrackedTarget target = results.get(0).getBestTarget();
+    double targetHypotenuse = 1;
+
+    public final double getDistance() {
+        if (results.size() <= 1) {
+            final double targetPitchRadians = target.getPitch();
+            targetHypotenuse = PhotonUtils.calculateDistanceToTargetMeters(Constants.VisionConstants.cameraHeightMeters, Constants.VisionConstants.targetHeightMeters, Constants.VisionConstants.cameraPitchRadians, targetPitchRadians);
+        } 
+        return targetHypotenuse;
+    }
+   
 
 
     public LauncherC(LauncherSS subsystem) {
@@ -33,7 +40,7 @@ public class LauncherC extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double launchspeed = RobotContainer.rc_launcherSS.calculateLaunchSpeed(targetHypotenuse);
+        double launchspeed = RobotContainer.rc_launcherSS.calculateLaunchSpeed(getDistance());
         RobotContainer.rc_launcherSS.spin(launchspeed);
     }
 

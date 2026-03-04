@@ -91,7 +91,7 @@ public class VisionSS extends SubsystemBase{
             //System.out.println(targetxdistance);
             System.out.println(robotPose);
             try {
-                TimeUnit.SECONDS.sleep(8);
+                TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
