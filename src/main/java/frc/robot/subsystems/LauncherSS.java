@@ -34,9 +34,9 @@ public class LauncherSS extends SubsystemBase{
         return speed;
     }
    
-    public void spin() {
-      launcher1.setVoltage(-speed);
-      launcher2.setVoltage(speed);
+    public void spin(double launchspeed) {
+      launcher1.setVoltage(-launchspeed);
+      launcher2.setVoltage(launchspeed);
     }
 
     public void stop(){
