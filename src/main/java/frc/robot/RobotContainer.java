@@ -13,6 +13,7 @@ import frc.robot.commands.IntakeTiltC;
 import frc.robot.commands.KickerC;
 import frc.robot.commands.LauncherC;
 import frc.robot.commands.LauncherSpeedC;
+import frc.robot.commands.StaticLauncherC;
 import frc.robot.subsystems.*;
 
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -41,6 +42,7 @@ public class RobotContainer {
   public static final LauncherSpeedC rc_launcherspeedC = new LauncherSpeedC(rc_launcherSS, 0.5);
   public static final ClimbC rc_climbC = new ClimbC(rc_climbSS);
   public static final KickerC rc_KickerC = new KickerC(rc_KickerSS);
+  public static final StaticLauncherC rc_staticLauncherC = new StaticLauncherC(rc_launcherSS);
 
   public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -101,6 +103,7 @@ public class RobotContainer {
     m_driverController.a().whileTrue(rc_intakeC);
     m_driverController.b().whileTrue(rc_intakeC);
     m_driverController.x().whileTrue(rc_KickerC);
+    m_driverController.y().whileTrue(rc_staticLauncherC);
 
     //Climb PID
 

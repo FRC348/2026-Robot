@@ -49,4 +49,9 @@ public class LauncherSS extends SubsystemBase{
       return launchspeed;
     }
 
+    public void staticlaunch() {
+      launcher1.setVoltage(-7.4);
+      launcher2.setVoltage(7.4);
+    }
+
 }
