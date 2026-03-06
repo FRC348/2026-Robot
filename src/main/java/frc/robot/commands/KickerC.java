@@ -1,13 +1,9 @@
 package frc.robot.commands;
 
-import java.text.BreakIterator;
-
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.KickerSS;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class KickerC extends Command {
   /** Creates a new AlgaeC. */
   public KickerC(KickerSS subsystem) {
@@ -22,7 +18,12 @@ public class KickerC extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (RobotContainer.m_driverController.leftBumper().getAsBoolean()) {
       RobotContainer.rc_KickerSS.KickerForward();
+    }
+    else {
+      RobotContainer.rc_KickerSS.KickerReverse();
+    }
    
   }
 // Called once the command ends or is interrupted.
@@ -38,5 +39,3 @@ public class KickerC extends Command {
   }
   
 }
-
-

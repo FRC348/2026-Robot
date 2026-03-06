@@ -8,11 +8,19 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
+import java.util.Optional;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 import frc.robot.commands.*;
 import org.photonvision.*;
+
+import com.pathplanner.lib.commands.FollowPathCommand;
+
 import frc.robot.subsystems.DriveSubsystem;
+import org.photonvision.*;
+import org.photonvision.targeting.PhotonPipelineResult;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -65,15 +73,18 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    //FollowPathCommand.warmupCommand().schedule();
+  }
 
   @Override
   public void disabledPeriodic() {}
 
-  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
+  /** This autonomous runs the aut onomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    RobotContainer.rc_visionSS.results.clear();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -91,6 +102,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    RobotContainer.rc_visionSS.results.clear();
+
 
 
     if (m_autonomousCommand != null) {
@@ -102,23 +115,25 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Calculate drivetrain commands from Joystick values
+    
         double forward = RobotContainer.m_driverController.getLeftY() * Constants.DriveConstants.kMaxLinearSpeed;
         double strafe = -RobotContainer.m_driverController.getLeftX() * Constants.DriveConstants.kMaxLinearSpeed;
         double turn = -RobotContainer.m_driverController.getRightX() * Constants.DriveConstants.kMaxAngularSpeed;
+
 
         // Read in relevant data from the Camera
         boolean targetVisible = false;
         double targetYaw = 0.0;
         var results = RobotContainer.rc_visionSS.camera.getAllUnreadResults();
         
-        if (!results.isEmpty()) {
-          
+        if (RobotContainer.rc_visionSS.results.size() > 0) {
+          System.out.println("bloh");
             // Camera processed a new frame since last
             // Get the last one in the list.
-            var result = results.get(results.size() - 1);
-            if (result.hasTargets()) {
+            if (RobotContainer.rc_visionSS.result.hasTargets()) {
+                RobotContainer.rc_visionSS.robotPose = RobotContainer.rc_visionSS.estimateCoprocMultiTagPose(RobotContainer.rc_visionSS.result);
                 // At least one AprilTag was seen by the camera
-                for (var target : result.getTargets()) {
+                for (var target : RobotContainer.rc_visionSS.result.getTargets()) {
                   
                     if (target.getFiducialId() == 7) {
                         // Found Tag 7, record its information
@@ -130,18 +145,18 @@ public class Robot extends TimedRobot {
 
         } 
         // Auto-align when requested
-        if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
+     //   if (RobotContainer.m_driverController.a().getAsBoolean() && targetVisible) {
             // Driver wants auto-alignment to tag 7
             // And, tag 7 is in sight, so we can turn toward it.
             // Override the driver's turn command with an automatic one that turns toward the tag.
-            turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
+       //     turn = -1.0 * targetYaw * Constants.VisionConstants.visionTurnKP * Constants.DriveConstants.kMaxAngularSpeed;
 
           // WILL NEED TO CHANGE VISION TURN KP VALUE IN CONSTANTS
 
-        }
+        
         //climb if requested, and a tag is in sight
-        else if (RobotContainer.m_driverController.povUp().getAsBoolean() == true && targetVisible == true);
-          new ClimbPIDC(RobotContainer.rc_ClimbPIDSS, () -> 20);
+        // else if (RobotContainer.m_driverController.povUp().getAsBoolean() == true && targetVisible == true);
+        //   new ClimbC(RobotContainer.rc_climbSS);
   
         
           // Command drivetrain motors based on target speeds

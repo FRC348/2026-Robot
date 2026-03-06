@@ -12,13 +12,11 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
-
+    public static final int kOperatorControllerPort = 1;
 
     
   }
     public static final int Intake = 45;
-    public static final int Kicker = 44;
-
 
   public static class VisionConstants {
     public static final double visionTurnKP = 0;
@@ -27,6 +25,27 @@ public final class Constants {
     public static final double targetHeightMeters = 6.7;
 
 
+  }
+
+  public static class CANIDConstants {
+    public static final int launcher1CANID = 9;
+    public static final int launcher2CANID = 10;
+    public static final int IntakeSpinCANID = 11;
+    public static final int KickerCANID = 13;
+    public static final int KickerBeltCANID = 14;
+    
+    public static final int kFrontLeftDrivingCanId = 1;
+    public static final int kRearLeftDrivingCanId = 5;
+    public static final int kFrontRightDrivingCanId = 3;  
+    public static final int kRearRightDrivingCanId = 7;
+
+    public static final int kFrontLeftTurningCanId = 2;
+    public static final int kRearLeftTurningCanId = 6;
+    public static final int kFrontRightTurningCanId = 4;
+    public static final int kRearRightTurningCanId = 8;
+
+    public static int kClimbMotorCANID = 15;
+    public static int kIntakeTiltMotorCANID = 16;
   }
 
   public static final class DriveConstants {
@@ -55,17 +74,6 @@ public final class Constants {
     public static final double kBackLeftChassisAngularOffset = Math.PI;
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
-    // SPARK MAX CAN IDs
-    public static final int kFrontLeftDrivingCanId = 1;
-    public static final int kRearLeftDrivingCanId = 5;
-    public static final int kFrontRightDrivingCanId = 3;
-    public static final int kRearRightDrivingCanId = 7;
-
-    public static final int kFrontLeftTurningCanId = 2;
-    public static final int kRearLeftTurningCanId = 6;
-    public static final int kFrontRightTurningCanId = 4;
-    public static final int kRearRightTurningCanId = 8;
-
     public static final boolean kGyroReversed = false;
   }
 
@@ -77,7 +85,7 @@ public final class Constants {
 
     // Calculations required for driving motor conversion factors and feed forward
     public static final double kDrivingMotorFreeSpeedRps = NeoMotorConstants.kFreeSpeedRpm / 60;
-    public static final double kWheelDiameterMeters = 0.07585;
+    public static final double kWheelDiameterMeters = 0.0762;
     public static final double kWheelCircumferenceMeters = kWheelDiameterMeters * Math.PI;
     // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15
     // teeth on the bevel pinion
@@ -94,7 +102,7 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3;
+    public static final double kMaxSpeedMetersPerSecond = 4.8;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
@@ -131,9 +139,6 @@ public final class Constants {
     public static final double kMaxAngleRads =
         Units.degreesToRadians(40.9 + 180); // 40.9 deg from horiz
   }
-  public static final class IntakeConstants {
-    public static final int testmotorcanid = 42;
-  }
 
 public static final class ClimbPIDConstants {
 
@@ -147,6 +152,12 @@ public static final class ClimbPIDConstants {
 public static double kD;
 public static double kP;
 public static double kI;
-public static int kClimbMotor = 43;
-public static int kIntakeMotor = 44;
+
+
+public static final class HubCoords {
+  public static double redHubX = 468.565 / 12;
+  public static double redHubY = 158.32 / 12;
+  public static double blueHubX = 181.555 / 12;
+  public static double blueHubY = 163.2 / 12;
+}
 }

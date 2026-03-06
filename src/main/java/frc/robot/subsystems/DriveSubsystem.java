@@ -6,13 +6,16 @@
 
 package frc.robot.subsystems;
 
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.ModuleConfig;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -26,36 +29,40 @@ import edu.wpi.first.units.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import frc.robot.Constants;
+import frc.robot.Constants.CANIDConstants;
 import frc.robot.Constants.DriveConstants;
-
 public class DriveSubsystem extends SubsystemBase {
 
   // Create MAXSwerveModules
-  public final MAXSwerveModule m_frontLeft =
+  public final MAXSwerveModule m_frontLeft = 
       new MAXSwerveModule(
-          DriveConstants.kFrontLeftDrivingCanId,
-          DriveConstants.kFrontLeftTurningCanId,
+          CANIDConstants.kFrontLeftDrivingCanId,
+          CANIDConstants.kFrontLeftTurningCanId,
           DriveConstants.kFrontLeftChassisAngularOffset);
 
   public final MAXSwerveModule m_frontRight =
       new MAXSwerveModule(
-          DriveConstants.kFrontRightDrivingCanId,
-          DriveConstants.kFrontRightTurningCanId,
+          CANIDConstants.kFrontRightDrivingCanId,
+          CANIDConstants.kFrontRightTurningCanId,
           DriveConstants.kFrontRightChassisAngularOffset);
 
   public final MAXSwerveModule m_rearLeft =
       new MAXSwerveModule(
-          DriveConstants.kRearLeftDrivingCanId,
-          DriveConstants.kRearLeftTurningCanId,
+          CANIDConstants.kRearLeftDrivingCanId,
+          CANIDConstants.kRearLeftTurningCanId,
           DriveConstants.kBackLeftChassisAngularOffset);
 
   public final MAXSwerveModule m_rearRight =
       new MAXSwerveModule(
-          DriveConstants.kRearRightDrivingCanId,
-          DriveConstants.kRearRightTurningCanId,
+          CANIDConstants.kRearRightDrivingCanId,
+          CANIDConstants.kRearRightTurningCanId,
           DriveConstants.kBackRightChassisAngularOffset);
+
+
+
+
+          
 
   // The gyro sensor
   public static final Pigeon2 m_gyro = new Pigeon2(0);
@@ -77,26 +84,14 @@ public class DriveSubsystem extends SubsystemBase {
     // ...
     // Load the RobotConfig from the GUI settings. You should probably
     // store this in your Constants file
-    RobotConfig config =
-        new RobotConfig(
-            74,
-            6.8,
-            new ModuleConfig(
-                Constants.ModuleConstants.kWheelDiameterMeters / 2,
-                0.5,
-                getHeading(),
-                DCMotor.getNEO(1),
-                20,
-                4),
-            new Translation2d(27 / 2, 27 / 2),
-            new Translation2d(27 / 2, -27 / 2),
-            new Translation2d(-27 / 2, 27 / 2),
-            new Translation2d(-27 / 2, -27 / 2));
+    RobotConfig config;
+    try {
+      config = RobotConfig.fromGUISettings();
 
     // Configure AutoBuilder last
     AutoBuilder.configure(
         this::getPose, // Robot pose supplier
-        this::resetPose, // Method to reset odometry (will be called if your auto has a starting
+        this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting
         // pose)
         this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
         (speeds, feedforwards) ->
@@ -122,6 +117,15 @@ public class DriveSubsystem extends SubsystemBase {
         },
         this // Reference to this subsystem to set requirements
         );
+        
+      } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
   }
 
   @Override
@@ -143,6 +147,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The pose.
    */
   public Pose2d getPose() {
+    System.out.println(m_odometry.getPoseMeters());
     return m_odometry.getPoseMeters();
   }
 
@@ -161,6 +166,7 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearRight.getPosition()
         },
         pose);
+      System.out.printf("Reset Odometry: %s -> %s\n", pose, getPose());
   }
 
   /**
@@ -172,6 +178,10 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fieldRelative Whether the provided x and y speeds are relative to the field.
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
+    System.out.println(xSpeed);
+    System.out.println(ySpeed);
+    System.out.println(rot);
+    System.out.println(fieldRelative);
     // Convert the commanded speeds into the correct units for the drivetrain
     double xSpeedDelivered = xSpeed * DriveConstants.kMaxSpeedMetersPerSecond;
     double ySpeedDelivered = ySpeed * DriveConstants.kMaxSpeedMetersPerSecond;
@@ -255,15 +265,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void resetPose(Pose2d pose) {
-    m_odometry.resetPosition(
-        Rotation2d.fromDegrees(m_gyro.getYaw().getValue().in(Units.Degrees) % 360),
-        new SwerveModulePosition[] {
-          m_frontLeft.getPosition(),
-          m_frontRight.getPosition(),
-          m_rearLeft.getPosition(),
-          m_rearRight.getPosition()
-        },
-        pose);
+    // m_odometry.resetPosition(
+    //     Rotation2d.fromDegrees(m_gyro.getYaw().getValue().in(Units.Degrees) % 360),
+    //     new SwerveModulePosition[] {
+    //       m_frontLeft.getPosition(),
+    //       m_frontRight.getPosition(),
+    //       m_rearLeft.getPosition(),
+    //       m_rearRight.getPosition()
+    //     },
+    //     pose);
   }
 
   public ChassisSpeeds getRobotRelativeSpeeds() {
