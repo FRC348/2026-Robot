@@ -48,6 +48,7 @@ public class RobotContainer {
   public static final StaticLauncherC rc_staticLauncherC = new StaticLauncherC(rc_launcherSS);
   public static final ChangeModeC rc_changeModeC = new ChangeModeC(rc_changeModeSS);
   public static final IntakeTiltC rc_intakeTiltC = new IntakeTiltC(rc_IntakeTiltSS);
+  public static final ManualLauncherC rc_manualLauncherC = new ManualLauncherC(rc_launcherSS);
 
   public static final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -112,19 +113,19 @@ public class RobotContainer {
     m_operatorController.rightTrigger().whileTrue(rc_KickerC);
     m_operatorController.rightBumper().whileTrue(rc_KickerC);
       
-    if (rc_changeModeSS.manual == false) {
-      m_operatorController.rightTrigger().whileTrue(rc_staticLauncherC);
-      //m_operatorController.rightBumper().whileTrue(rc_launcherC);
-    }
+    // if (rc_changeModeSS.manual == false) {
+    //   m_operatorController.rightTrigger().whileTrue(rc_staticLauncherC);
+    //   //m_operatorController.rightBumper().whileTrue(rc_launcherC);
+    // }
 
-    else if (rc_changeModeSS.manual == true) {
+    //else if (rc_changeModeSS.manual == true) {
       m_driverController.povUp().onTrue(new LauncherSpeedC(rc_launcherSS, 1));
       m_driverController.povDown().onTrue(new LauncherSpeedC(rc_launcherSS, -1));
       m_driverController.povRight().onTrue(new LauncherSpeedC(rc_launcherSS, 0.1));
       m_driverController.povLeft().onTrue(new LauncherSpeedC(rc_launcherSS, -0.1));
       //m_driverController.rightTrigger().onTrue(rc_launcherC);
-      //m_driverController.rightBumper().onTrue(rc_launcherC);
-    }
+      m_operatorController.rightBumper().whileTrue(rc_manualLauncherC);
+    //}
 
     // Launcher Testing button binds
     
