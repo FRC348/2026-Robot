@@ -34,10 +34,16 @@ public class VisionSS extends SubsystemBase{
     public static final Transform3d kRobotToCam = new Transform3d(new Translation3d(0.5, 0.0, 0.5), new Rotation3d(0, 0, 0));
     PhotonPoseEstimator photonEstimator = new PhotonPoseEstimator(kTagLayout, kRobotToCam);
     public Optional<EstimatedRobotPose> robotPose;
-    public List<PhotonPipelineResult> results = camera.getAllUnreadResults();  // This is literally seeing nothing at all
+    public List<PhotonPipelineResult> results = camera.getAllUnreadResults();
     public PhotonPipelineResult result = camera.getLatestResult();
 
-
+    @Override
+    public void periodic() {
+        results = camera.getAllUnreadResults();
+        if (!results.isEmpty()) {
+            result = results.get(results.size() - 1);
+        }
+    }
 
     public Optional<EstimatedRobotPose> estimateCoprocMultiTagPose(PhotonPipelineResult result) {
         if (!result.hasTargets()) {
@@ -102,12 +108,6 @@ public class VisionSS extends SubsystemBase{
                 //System.out.println(targetHypotenuse);
                 //System.out.println(targetxdistance);
                 System.out.println(robotPose);
-                try {
-                    TimeUnit.SECONDS.sleep(10);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }             
                 SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
 
                 // Capture pre-process camera stream image
