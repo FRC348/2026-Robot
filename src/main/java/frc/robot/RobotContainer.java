@@ -6,15 +6,6 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.ChangeModeC;
-import frc.robot.commands.ClimbC;
-import frc.robot.commands.ClimbC;
-import frc.robot.commands.IntakeC;
-import frc.robot.commands.IntakeTiltC;
-import frc.robot.commands.KickerC;
-import frc.robot.commands.LauncherC;
-import frc.robot.commands.LauncherSpeedC;
-import frc.robot.commands.StaticLauncherC;
 import frc.robot.subsystems.*;
 
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -97,12 +88,12 @@ public class RobotContainer {
     // Driver controller button commands
     m_driverController.leftStick().whileTrue(m_robotDrive.setXCommand());
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
-    m_driverController.a().onTrue(rc_changeModeC);
+    //.a().onTrue(rc_changeModeC);
 
     // Operator controller button commands
 
-    m_operatorController.a().whileTrue(rc_climbC);
-    m_operatorController.b().whileTrue(rc_climbC);
+    m_driverController.a().whileTrue(rc_climbC);
+    m_driverController.b().whileTrue(rc_climbC);
 
     m_operatorController.povRight().whileTrue(rc_intakeTiltC);
     m_operatorController.povLeft().whileTrue(rc_intakeTiltC);
@@ -117,6 +108,16 @@ public class RobotContainer {
     //   m_operatorController.rightTrigger().whileTrue(rc_staticLauncherC);
     //   //m_operatorController.rightBumper().whileTrue(rc_launcherC);
     // }
+
+    // Shooter far to near
+    // 12 ft
+    m_operatorController.a().whileTrue(new LauncherSetSpeedForDistance(rc_launcherSS, rc_KickerSS, 7.6));
+    // 10 ft
+    m_operatorController.b().whileTrue(new LauncherSetSpeedForDistance(rc_launcherSS, rc_KickerSS, 7.4));
+    // 8 ft
+    m_operatorController.x().whileTrue(new LauncherSetSpeedForDistance(rc_launcherSS, rc_KickerSS, 7));
+    // 6 ft
+    m_operatorController.y().whileTrue(new LauncherSetSpeedForDistance(rc_launcherSS, rc_KickerSS, 6.5));
 
     //else if (rc_changeModeSS.manual == true) {
       m_driverController.povUp().onTrue(new LauncherSpeedC(rc_launcherSS, 1));
