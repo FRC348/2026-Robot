@@ -71,12 +71,12 @@ public class VisionSS extends SubsystemBase{
 
         //Latest result from camera
         // List<PhotonPipelineResult> results = camera.getAllUnreadResults();
-        System.out.println("Number of results: " + results.size());
-        System.out.println("Is it seeing anything? " + results);
+        //System.out.println("Number of results: " + results.size());
+        //System.out.println("Is it seeing anything? " + results);
 
         //Check for targets within latest result
         if (results.isEmpty()) {
-            System.out.println("No targets");
+            //System.out.println("No targets");
             Boolean targetVisible = false;
             SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
         }

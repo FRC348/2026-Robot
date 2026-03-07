@@ -147,7 +147,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The pose.
    */
   public Pose2d getPose() {
-    System.out.println(m_odometry.getPoseMeters());
+    //System.out.println(m_odometry.getPoseMeters());
     return m_odometry.getPoseMeters();
   }
 
@@ -178,10 +178,10 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fieldRelative Whether the provided x and y speeds are relative to the field.
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
-    System.out.println(xSpeed);
-    System.out.println(ySpeed);
-    System.out.println(rot);
-    System.out.println(fieldRelative);
+    // System.out.println(xSpeed);
+    // System.out.println(ySpeed);
+    // System.out.println(rot);
+    // System.out.println(fieldRelative);
     // Convert the commanded speeds into the correct units for the drivetrain
     double xSpeedDelivered = xSpeed * DriveConstants.kMaxSpeedMetersPerSecond;
     double ySpeedDelivered = ySpeed * DriveConstants.kMaxSpeedMetersPerSecond;
