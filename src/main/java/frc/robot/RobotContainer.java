@@ -127,12 +127,7 @@ public class RobotContainer {
       //m_driverController.rightTrigger().onTrue(rc_launcherC);
       m_operatorController.rightBumper().whileTrue(rc_manualLauncherC);
     //}
-
-    // Launcher Testing button binds
-    
-
-
-    m_driverController.x().whileTrue(rc_KickerC);
+      m_driverController.x().whileTrue(rc_KickerC);
 
   }
 
