@@ -64,7 +64,8 @@ public class RobotContainer {
     // );
 
     NamedCommands.registerCommand("Shoot", new LauncherSetSpeedForDistance(rc_launcherSS, rc_KickerSS, 7.6));
-
+    NamedCommands.registerCommand("Kicker", rc_KickerC);
+    
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
