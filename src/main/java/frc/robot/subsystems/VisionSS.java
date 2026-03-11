@@ -30,12 +30,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSS extends SubsystemBase{
-    public PhotonCamera camera = new PhotonCamera("Camera_1");
+    public PhotonCamera camera = new PhotonCamera("ShooterCam");
+    public PhotonCamera driveCamera = new PhotonCamera("DriverCam");
     public static final AprilTagFieldLayout kTagLayout = AprilTagFieldLayout.loadField(AprilTagFields.kDefaultField);
     public static final Transform3d kRobotToCam = new Transform3d(new Translation3d(0.5, 0.0, 0.5), new Rotation3d(0, 0, 0));
     PhotonPoseEstimator photonEstimator = new PhotonPoseEstimator(kTagLayout, kRobotToCam);
     public Optional<EstimatedRobotPose> robotPose;
     public double distancetoHub = 0;
+    boolean targetVisible = false;
     @Override
     public void periodic() {
         List<PhotonPipelineResult> results = camera.getAllUnreadResults();
@@ -43,6 +45,8 @@ public class VisionSS extends SubsystemBase{
         if (!results.isEmpty()) {
             result = results.get(results.size() - 1);
         } else {
+            boolean targetVisible = false;
+            SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
             return;
         }
 
@@ -50,6 +54,8 @@ public class VisionSS extends SubsystemBase{
             // Camera processed a new frame since last
             // Get the last one in the list.
             if (result.hasTargets()) {
+                boolean targetVisible = true;
+                SmartDashboard.putBoolean("Vision Target Visible", targetVisible);
                 System.out.println("Has Target");
                 robotPose = photonEstimator.estimateCoprocMultiTagPose(result)
                                 .or(() -> photonEstimator.estimateLowestAmbiguityPose(result));
