@@ -38,7 +38,7 @@ public class RobotContainer {
   public static final ChangeModeSS rc_changeModeSS = new ChangeModeSS();
 
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
-  //public static final LauncherC rc_launcherC = new LauncherC(rc_launcherSS);
+  public static final LauncherC rc_launcherC = new LauncherC(rc_launcherSS, rc_visionSS);
   public static final LauncherSpeedC rc_launcherspeedC = new LauncherSpeedC(rc_launcherSS, 0.5);
   public static final ClimbC rc_climbC = new ClimbC(rc_climbSS);
   public static final KickerC rc_KickerC = new KickerC(rc_KickerSS);
@@ -116,7 +116,6 @@ public class RobotContainer {
     m_operatorController.leftBumper().whileTrue(rc_intakeC);
     m_operatorController.povDown().whileTrue(rc_intakeC);
     m_operatorController.leftTrigger().whileTrue(rc_KickerC);
-    m_operatorController.rightTrigger().whileTrue(rc_KickerC);
     m_operatorController.rightBumper().whileTrue(rc_KickerC);
       
     // if (rc_changeModeSS.manual == false) {
@@ -139,7 +138,7 @@ public class RobotContainer {
       m_driverController.povDown().onTrue(new LauncherSpeedC(rc_launcherSS, -1));
       m_driverController.povRight().onTrue(new LauncherSpeedC(rc_launcherSS, 0.1));
       m_driverController.povLeft().onTrue(new LauncherSpeedC(rc_launcherSS, -0.1));
-      //m_driverController.rightTrigger().onTrue(rc_launcherC);
+      m_operatorController.rightTrigger().whileTrue(rc_launcherC);
       m_operatorController.rightBumper().whileTrue(rc_manualLauncherC);
     //}
       m_driverController.x().whileTrue(rc_KickerC);

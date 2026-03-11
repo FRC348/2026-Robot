@@ -12,6 +12,7 @@ import frc.robot.Constants;
 public class LauncherSS extends SubsystemBase{
 
     public double speed = 8;
+    public int calc;
 
     public static final SparkMax launcher1 = new SparkMax(Constants.CANIDConstants.launcher1CANID, MotorType.kBrushless);
     public static final SparkMax launcher2 = new SparkMax(Constants.CANIDConstants.launcher2CANID, MotorType.kBrushless);
@@ -45,8 +46,11 @@ public class LauncherSS extends SubsystemBase{
         launcher2.set(0);
     }
 
-    public double calculateLaunchSpeed(double robotdistancetotag) {
-      double launchspeed = (0.0184*robotdistancetotag + 4.73);
+    public double calculateLaunchSpeed(double distanceToHub) {
+      double launchspeed = (0.0184*distanceToHub + 4.55);
+      calc = calc + 1;
+      SmartDashboard.putNumber("Calculated # ", calc);
+      SmartDashboard.putNumber("Calculated Launch Speed", launchspeed);
       return launchspeed;
     }
     
