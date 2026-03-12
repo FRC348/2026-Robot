@@ -89,9 +89,13 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     Optional<Alliance> ally = DriverStation.getAlliance();
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    
     if (ally.get() == Alliance.Red) {alliance = "red";}
     else if (ally.get() == Alliance.Blue) {alliance = "blue";}
+    RobotContainer.rc_visionSS.driveCamera.setFPSLimit(30);
+    RobotContainer.rc_visionSS.camera.setFPSLimit(30);
+    
+
     //RobotContainer.rc_visionSS.results.clear();
 
     // schedule the autonomous command (example)
