@@ -24,13 +24,13 @@ public class BasicAutoC extends Command {
         start = Timer.getFPGATimestamp();
         double launchspeed = RobotContainer.rc_launcherSS.calculateLaunchSpeed(RobotContainer.rc_visionSS.getDistanceToHub());
         
-        //if (start - Timer.getFPGATimestamp() <= 1) {
-           // RobotContainer.rc_launcherSS.spin(launchspeed);
-       // }
-        //else if (start - Timer.getFPGATimestamp() <= 9) {
-        RobotContainer.rc_KickerSS.KickerForward();      
-        RobotContainer.rc_launcherSS.spin(launchspeed);
-       // }
+        //if (start - Timer.getMatchTime() <= 1) {
+            //RobotContainer.rc_launcherSS.spin(launchspeed);
+        //}
+        //else if (start - Timer.getMatchTime() <= 9) {
+            RobotContainer.rc_KickerSS.KickerForward();      
+            RobotContainer.rc_launcherSS.spin(launchspeed);
+        //}
     }
 
     @Override

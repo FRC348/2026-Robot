@@ -47,7 +47,7 @@ public class LauncherSS extends SubsystemBase{
     }
 
     public double calculateLaunchSpeed(double distanceToHub) {
-      double launchspeed = (0.0184*distanceToHub + 4.35);
+      double launchspeed = (0.0184*distanceToHub + 4.65);
       calc = calc + 1;
       SmartDashboard.putNumber("Calculated # ", calc);
       SmartDashboard.putNumber("Calculated Launch Speed", launchspeed);
