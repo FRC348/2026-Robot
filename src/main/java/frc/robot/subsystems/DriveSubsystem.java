@@ -211,25 +211,32 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Sets the wheels into an X formation to prevent movement. */
   public Command setXCommand() {
-    if (RobotContainer.m_driverController.rightBumper().getAsBoolean() && RobotContainer.m_operatorController.leftStick().getAsBoolean()) {
-    return this.run(
+        return this.run(
         () -> {
           m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
           m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
           m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
           m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
         });
-  }
-    else if (RobotContainer.m_driverController.rightBumper().getAsBoolean() == false && RobotContainer.m_driverController.leftStick().getAsBoolean() == true) {
-      return this.run(
-        () -> {
-          m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-          m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-          m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-          m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-        });
-      }
-    else return null;
+  //   if (RobotContainer.m_driverController.rightBumper().getAsBoolean() && RobotContainer.m_operatorController.leftStick().getAsBoolean()) {
+  //   return this.run(
+  //       () -> {
+  //         m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  //         m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //         m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //         m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  //       });
+  // }
+  //   else if (RobotContainer.m_driverController.rightBumper().getAsBoolean() == false && RobotContainer.m_driverController.leftStick().getAsBoolean() == true) {
+  //     return this.run(
+  //       () -> {
+  //         m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  //         m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //         m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+  //         m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  //       });
+  //     }
+  //   else return null;
       
 }
 
