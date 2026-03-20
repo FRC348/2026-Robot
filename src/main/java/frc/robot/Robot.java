@@ -17,7 +17,9 @@ import java.util.random.RandomGenerator;
 import frc.robot.commands.*;
 import org.photonvision.*;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.FollowPathCommand;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import frc.robot.subsystems.DriveSubsystem;
 import org.photonvision.*;
@@ -55,6 +57,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     DriveSubsystem.m_gyro.reset();
+
+    FollowPathCommand.warmupCommand().schedule();
     
 
   }
@@ -73,6 +77,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -82,7 +87,9 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    
+  }
 
   /** This autonomous runs the aut onomous command selected by your {@link RobotContainer} class. */
   @Override
@@ -106,7 +113,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    SmartDashboard.putNumber("Auto Timer: ", RobotContainer.rc_basicAutoC.time);
+  }
 
   @Override
   public void teleopInit() {
