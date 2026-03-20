@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import frc.robot.Auto.AutoShootC;
+import frc.robot.Auto.BasicAutoC;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.*;
@@ -48,6 +50,8 @@ public class RobotContainer {
   public static final IntakeTiltC rc_intakeTiltC = new IntakeTiltC(rc_IntakeTiltSS);
   public static final ManualLauncherC rc_manualLauncherC = new ManualLauncherC(rc_launcherSS);
 
+  public static final AutoShootC rc_autoShootC = new AutoShootC(rc_KickerSS, rc_launcherSS);
+
   public static final CommandXboxController m_driverController =
     new CommandXboxController(OperatorConstants.kDriverControllerPort);
   public static final CommandXboxController m_operatorController =
@@ -64,8 +68,7 @@ public class RobotContainer {
     //   )
     // );
 
-    NamedCommands.registerCommand("Shoot", new LauncherSetSpeedForDistance(rc_launcherSS, rc_KickerSS, 7.6));
-    NamedCommands.registerCommand("Kicker", rc_KickerC);
+    NamedCommands.registerCommand("Shoot", rc_autoShootC);
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -153,7 +156,8 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     System.out.println("getAutonomousCommand");
-    //return autoChooser.getSelected();
-    return rc_basicAutoC;
+    return autoChooser.getSelected();
+    //return rc_basicAutoC;
+    //return new PathPlannerAuto("Test Auto");
   }
 }

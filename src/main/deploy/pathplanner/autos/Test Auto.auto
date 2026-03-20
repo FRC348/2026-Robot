@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Blue Far Left Auto Start"
+            "pathName": "Test Path"
           }
         },
         {
@@ -15,17 +15,11 @@
           "data": {
             "name": "Shoot"
           }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Blue Far Left Auto 2"
-          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Blue Defensive Autos",
+  "folder": null,
   "choreoAuto": false
 }

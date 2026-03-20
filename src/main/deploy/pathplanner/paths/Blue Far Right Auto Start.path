@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.6454065620593723,
-        "y": 7.198502139800266
+        "x": 3.5190073623478524,
+        "y": 0.45245982405394103
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.6546219686214263,
-        "y": 7.0044222539229475
+        "x": 2.6158057811698208,
+        "y": 1.1432094254736485
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.9263338088445074,
-        "y": 5.115378031383738
+        "x": 2.577,
+        "y": 1.945
       },
       "prevControl": {
-        "x": 2.589928673323823,
-        "y": 6.331611982881598
+        "x": 1.577,
+        "y": 1.945
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 143.67317404787977
+    "rotation": 41.186
   },
   "reversed": false,
-  "folder": "Left Autos",
+  "folder": "Blue Auto Defensive Paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0
