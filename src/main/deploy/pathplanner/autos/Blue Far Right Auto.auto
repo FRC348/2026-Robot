@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "BFRA Start"
+            "pathName": "Blue Far Right Auto Start"
           }
         },
         {
@@ -15,11 +15,17 @@
           "data": {
             "name": "Shoot"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Blue Far Right Auto 2"
+          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Blue Autos",
+  "folder": "Blue Defensive Autos",
   "choreoAuto": false
 }

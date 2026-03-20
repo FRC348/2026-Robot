@@ -3,10 +3,16 @@
   "robotLength": 0.889,
   "holonomicMode": true,
   "pathFolders": [
-    "Left Autos"
+    "Blue Auto Basic Paths",
+    "Blue Auto Defensive Paths",
+    "Red Auto Basic Paths",
+    "Red Auto Defensive Paths"
   ],
   "autoFolders": [
-    "Blue Autos"
+    "Blue Basic Autos",
+    "Blue Defensive Autos",
+    "Red Basic Autos",
+    "Red Defensive Autos"
   ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,

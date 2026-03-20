@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Blue Far Left Auto Start"
+            "pathName": "Blue Middle Basic Auto Start"
           }
         },
         {
@@ -19,13 +19,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Blue Far Left Auto 2"
+            "pathName": "Blue Middle Basic Auto 2"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Blue Defensive Autos",
+  "folder": "Blue Basic Autos",
   "choreoAuto": false
 }
