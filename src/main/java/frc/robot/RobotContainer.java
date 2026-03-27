@@ -37,7 +37,6 @@ public class RobotContainer {
   public static final LauncherSS rc_launcherSS = new LauncherSS();
   public static final ClimbSS rc_climbSS = new ClimbSS();
   public static final KickerSS rc_KickerSS = new KickerSS();
-  //public static final ChangeModeSS rc_changeModeSS = new ChangeModeSS();
 
   public static final IntakeC rc_intakeC = new IntakeC(rc_intakeSS);
   public static final LauncherC rc_launcherC = new LauncherC(rc_launcherSS, rc_visionSS);
