@@ -320,16 +320,20 @@ public class DriveSubsystem extends SubsystemBase {
     double dydx = ((RobotContainer.rc_visionSS.RobotY - Constants.HubCoords.blueHubY)/(RobotContainer.rc_visionSS.RobotX - Constants.HubCoords.blueHubX));
     SmartDashboard.putNumber("DY/DX", dydx);
     double theta = Math.atan(dydx);
+    double theta2 = Math.atan2((RobotContainer.rc_visionSS.RobotY - Constants.HubCoords.blueHubY), (RobotContainer.rc_visionSS.RobotX - Constants.HubCoords.blueHubX));
     SmartDashboard.putNumber("Angle to Hub", theta);
-    return theta;
+    SmartDashboard.putNumber("Atan2 Angle to Hub", theta2);
+    return theta2;
   }
 
     public double getRedHubAngle() {
     double dydx = ((RobotContainer.rc_visionSS.RobotY - Constants.HubCoords.redHubY)/(RobotContainer.rc_visionSS.RobotX - Constants.HubCoords.redHubX));
     SmartDashboard.putNumber("DY/DX", dydx);
     double theta = Math.atan(dydx);
-    SmartDashboard.putNumber("Angle to Hub", theta);
-    return theta;
+    double theta2 = Math.atan2((RobotContainer.rc_visionSS.RobotY - Constants.HubCoords.redHubY), (RobotContainer.rc_visionSS.RobotX - Constants.HubCoords.redHubX));
+    SmartDashboard.putNumber("Atan Angle to Hub", theta);
+    SmartDashboard.putNumber("Atan2 Angle to Hub", theta2);
+    return theta2;
   }
   
   
