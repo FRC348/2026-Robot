@@ -24,7 +24,7 @@ public class AutoAlignC extends Command{
 
     @Override
     public void execute() {
-    if (RobotContainer.rc_visionSS.isblue && !RobotContainer.rc_visionSS.results.isEmpty() && RobotContainer.m_driverController.leftBumper().getAsBoolean()) {
+    if (RobotContainer.rc_visionSS.isblue) {
         RobotContainer.m_robotDrive.drive(
             -MathUtil.applyDeadband(
                         RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
@@ -34,7 +34,7 @@ public class AutoAlignC extends Command{
                         true
                         );
     }
-    else if (!RobotContainer.rc_visionSS.isblue && !RobotContainer.rc_visionSS.results.isEmpty() && RobotContainer.m_driverController.leftBumper().getAsBoolean()) {
+    else if (!RobotContainer.rc_visionSS.isblue) {
         RobotContainer.m_robotDrive.drive(
             -MathUtil.applyDeadband(
                         RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
@@ -44,19 +44,11 @@ public class AutoAlignC extends Command{
                         true
                         );
     }
-    else {RobotContainer.m_robotDrive.drive(
-                    -MathUtil.applyDeadband(
-                        RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                    -MathUtil.applyDeadband(
-                        RobotContainer.m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                    -MathUtil.applyDeadband(
-                        RobotContainer.m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                    true);
 
 
 
     
-  }    }
+  }    
     @Override
     public void end(boolean interrupted) {}
 

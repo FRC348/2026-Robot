@@ -31,6 +31,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.units.*;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -317,13 +318,17 @@ public class DriveSubsystem extends SubsystemBase {
   }
   public double getBlueHubAngle() {
     double dydx = ((RobotContainer.rc_visionSS.RobotY - Constants.HubCoords.blueHubY)/(RobotContainer.rc_visionSS.RobotX - Constants.HubCoords.blueHubX));
+    SmartDashboard.putNumber("DY/DX", dydx);
     double theta = Math.atan(dydx);
+    SmartDashboard.putNumber("Angle to Hub", theta);
     return theta;
   }
 
     public double getRedHubAngle() {
     double dydx = ((RobotContainer.rc_visionSS.RobotY - Constants.HubCoords.redHubY)/(RobotContainer.rc_visionSS.RobotX - Constants.HubCoords.redHubX));
+    SmartDashboard.putNumber("DY/DX", dydx);
     double theta = Math.atan(dydx);
+    SmartDashboard.putNumber("Angle to Hub", theta);
     return theta;
   }
   
