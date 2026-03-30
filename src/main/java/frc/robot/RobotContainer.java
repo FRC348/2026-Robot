@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.Auto.AutoIntakeC;
 import frc.robot.Auto.AutoShootC;
 import frc.robot.Auto.BasicAutoC;
 import frc.robot.Constants.OIConstants;
@@ -51,7 +52,7 @@ public class RobotContainer {
 
   public static final AutoShootC rc_autoShootC = new AutoShootC(rc_KickerSS, rc_launcherSS);
   public static final BasicAutoC rc_basicAutoC = new BasicAutoC(rc_KickerSS, rc_launcherSS, m_robotDrive);
-
+  public static final AutoIntakeC rc_autoIntakeC = new AutoIntakeC();
 
   public static final CommandXboxController m_driverController =
     new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -61,6 +62,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     NamedCommands.registerCommand("Shoot", rc_autoShootC);
+    NamedCommands.registerCommand("Intake", rc_KickerC);
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
