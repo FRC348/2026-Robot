@@ -13,13 +13,19 @@
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Intake"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Test Path 2"
+            "pathName": "Return Test Path 2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
           }
         }
       ]
