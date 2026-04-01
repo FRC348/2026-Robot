@@ -47,7 +47,7 @@ public class RobotContainer {
   //public static final ChangeModeC rc_changeModeC = new ChangeModeC(rc_changeModeSS);
   public static final IntakeTiltC rc_intakeTiltC = new IntakeTiltC(rc_IntakeTiltSS);
   public static final ManualLauncherC rc_manualLauncherC = new ManualLauncherC(rc_launcherSS);
-  public static final AutoAlignC rc_autoAlignC = new AutoAlignC(m_robotDrive);
+  public static final AutoAlignC rc_autoAlignC = new AutoAlignC(m_robotDrive, rc_visionSS);
 
   public static final AutoShootC rc_autoShootC = new AutoShootC(rc_KickerSS, rc_launcherSS);
   public static final BasicAutoC rc_basicAutoC = new BasicAutoC(rc_KickerSS, rc_launcherSS, m_robotDrive);
@@ -98,7 +98,7 @@ public class RobotContainer {
   private void configureBindings() {
     // Driver controller button commands
     
-    m_driverController.leftBumper().whileTrue(rc_autoAlignC);
+    //m_driverController.leftBumper().whileTrue(rc_autoAlignC);
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
     m_driverController.x().whileTrue(rc_KickerC);
     m_driverController.a().whileTrue(rc_climbC);

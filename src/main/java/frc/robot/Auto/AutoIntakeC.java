@@ -38,7 +38,7 @@ public class AutoIntakeC extends Command{
 
     @Override
     public boolean isFinished() {
-        if (time <= 3.5) {
+        if (time - starttime <= 3.5) {
             return false;
         }
         else {

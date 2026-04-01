@@ -20,6 +20,8 @@ import com.pathplanner.lib.config.ModuleConfig;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -36,12 +38,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.CANIDConstants;
 import frc.robot.Constants.DriveConstants;
 public class DriveSubsystem extends SubsystemBase {
 
-
+  static SwerveDrivePoseEstimator m_poseEstimator;
 
   // Create MAXSwerveModules
   public final MAXSwerveModule m_frontLeft = 
@@ -87,8 +90,7 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
           });
-
-
+  
   public DriveSubsystem() {
     // All other subsystem initialization
     // ...
@@ -135,7 +137,17 @@ public class DriveSubsystem extends SubsystemBase {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-
+    SwerveDrivePoseEstimator m_poseEstimator = new SwerveDrivePoseEstimator(
+    Constants.DriveConstants.kDriveKinematics,
+    m_gyro.getRotation2d(),
+    new SwerveModulePosition[] {
+        m_frontLeft.getPosition(),
+        m_frontRight.getPosition(),
+        m_rearLeft.getPosition(),
+        m_rearRight.getPosition()
+      },
+    new Pose2d()  // Initial pose
+);
 
 
   }
@@ -151,6 +163,20 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearLeft.getPosition(),
           m_rearRight.getPosition()
         });
+        
+        DriveSubsystem.m_poseEstimator.update(m_gyro.getRotation2d(), 
+        new SwerveModulePosition[] {
+          m_frontLeft.getPosition(),
+          m_frontRight.getPosition(),
+          m_rearLeft.getPosition(),
+          m_rearRight.getPosition() 
+        });
+        m_poseEstimator.addVisionMeasurement(RobotContainer.rc_autoAlignC.visionPose,
+        RobotContainer.rc_autoAlignC.visionTimestamp
+        );
+
+        Pose2d currentPose = m_poseEstimator.getEstimatedPosition();
+
   }
 
   /**
