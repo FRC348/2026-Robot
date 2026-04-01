@@ -40,9 +40,7 @@ import frc.robot.RobotContainer;
 import frc.robot.Constants.CANIDConstants;
 import frc.robot.Constants.DriveConstants;
 public class DriveSubsystem extends SubsystemBase {
-
-
-
+  
   // Create MAXSwerveModules
   public final MAXSwerveModule m_frontLeft = 
       new MAXSwerveModule(
@@ -190,10 +188,6 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fieldRelative Whether the provided x and y speeds are relative to the field.
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
-    // System.out.println(xSpeed);
-    // System.out.println(ySpeed);
-    // System.out.println(rot);
-    // System.out.println(fieldRelative);
     // Convert the commanded speeds into the correct units for the drivetrain
     double xSpeedDelivered = 2 * xSpeed * DriveConstants.kMaxSpeedMetersPerSecond;
     double ySpeedDelivered = 2 * ySpeed * DriveConstants.kMaxSpeedMetersPerSecond;
@@ -229,27 +223,7 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
           m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
         });
-  //   if (RobotContainer.m_driverController.rightBumper().getAsBoolean() && RobotContainer.m_operatorController.leftStick().getAsBoolean()) {
-  //   return this.run(
-  //       () -> {
-  //         m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-  //         m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-  //         m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-  //         m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-  //       });
-  // }
-  //   else if (RobotContainer.m_driverController.rightBumper().getAsBoolean() == false && RobotContainer.m_driverController.leftStick().getAsBoolean() == true) {
-  //     return this.run(
-  //       () -> {
-  //         m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-  //         m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-  //         m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-  //         m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-  //       });
-  //     }
-  //   else return null;
-      
-}
+  }
 
 
   /**
