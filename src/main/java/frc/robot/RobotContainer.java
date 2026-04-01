@@ -62,6 +62,8 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    // Named Commands and other PathPlanner things
     NamedCommands.registerCommand("Shoot", rc_autoShootC);
     NamedCommands.registerCommand("Intake", rc_KickerC);
 
