@@ -140,7 +140,7 @@ public class DriveSubsystem extends SubsystemBase {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    SwerveDrivePoseEstimator m_poseEstimator = new SwerveDrivePoseEstimator(
+    m_poseEstimator = new SwerveDrivePoseEstimator(
     Constants.DriveConstants.kDriveKinematics,
     m_gyro.getRotation2d(),
     new SwerveModulePosition[] {
