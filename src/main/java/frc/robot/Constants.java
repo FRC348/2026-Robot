@@ -75,6 +75,7 @@ public final class Constants {
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
     public static final boolean kGyroReversed = false;
+    public static final boolean fieldRelative = true;
   }
 
   public static final class ModuleConstants {

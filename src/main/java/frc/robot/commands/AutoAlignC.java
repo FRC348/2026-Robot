@@ -20,6 +20,7 @@ import org.photonvision.EstimatedRobotPose;
 import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Empty;
 
 import edu.wpi.first.math.*;
+import edu.wpi.first.math.controller.PIDController;
 
 /**
  * AUTO-ALIGN WITH SENSOR FUSION
@@ -39,6 +40,10 @@ public class AutoAlignC extends Command {
     public Rotation2d desiredHeading;
     public Pose2d visionPose;
     public double visionTimestamp;
+    private PIDController turnController;
+    private PIDController yController;
+    private PIDController xController;
+    private long starttime;
     private final DriveSubsystem m_drive;
     private final VisionSS m_vision;
     
@@ -57,7 +62,17 @@ public class AutoAlignC extends Command {
         m_drive = drive;
         m_vision = vision;
         addRequirements(drive);
+        turnController = new PIDController(0, 0, 0);
+        yController = new PIDController(0, 0, 0);
+
+        starttime = System.currentTimeMillis();
+        turnController.setSetpoint(0);
+        turnController.setTolerance(0);
+
+        yController.setSetpoint(0);
+        yController.setTolerance(0);
     }
+
     
     @Override
     public void initialize() {
@@ -134,6 +149,9 @@ public class AutoAlignC extends Command {
         //DriveSubsystem.aligntoHub(desiredHeading);
         //driveWithDriverInput(rotationCommand);
         driveWithAutoAngle(desiredHeading, rotationCommand);
+        double yGain = yController.calculate(RobotContainer.rc_visionSS.xDistanceToHub);
+        double xGain = xController.calculate(RobotContainer.rc_visionSS.yDistanceToHub);
+        RobotContainer.m_robotDrive.set(xGain, yGain, rotationCommand);
 
     }
     private void driveWithAutoAngle(Rotation2d desiredHeading, double autoRotation) {
