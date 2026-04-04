@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.4956348074179737,
-        "y": 4.00265335235378
+        "x": 3.5273734939759036,
+        "y": 1.368638554216867
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.032683815638562,
-        "y": 4.009301468513342
+        "x": 3.9455380196504923,
+        "y": 1.0560165568076165
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.8006704707560623,
-        "y": 4.00265335235378
+        "x": 2.2925421686746983,
+        "y": 2.734602409638553
       },
       "prevControl": {
-        "x": 1.2534236368960472,
-        "y": 4.001042660585062
+        "x": 2.04275515430579,
+        "y": 2.7449197471181024
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -150.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Blue Auto Dump Paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0

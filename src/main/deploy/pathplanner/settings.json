@@ -5,14 +5,18 @@
   "pathFolders": [
     "Blue Auto Basic Paths",
     "Blue Auto Defensive Paths",
+    "Blue Auto Dump Paths",
     "Red Auto Basic Paths",
-    "Red Auto Defensive Paths"
+    "Red Auto Defensive Paths",
+    "Red Auto Dump Paths"
   ],
   "autoFolders": [
     "Blue Basic Autos",
     "Blue Defensive Autos",
+    "Blue Dump Autos",
     "Red Basic Autos",
-    "Red Defensive Autos"
+    "Red Defensive Autos",
+    "Red Dump Autos"
   ],
   "defaultMaxVel": 1.0,
   "defaultMaxAccel": 1.0,
