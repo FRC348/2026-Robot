@@ -29,6 +29,7 @@ import frc.robot.commands.*;
 public class RobotContainer {
   
   private final SendableChooser<Command> autoChooser;
+  boolean isItGoTime = true;
 
   // The robot's subsystems
   public static final DriveSubsystem m_robotDrive = new DriveSubsystem();
@@ -67,7 +68,12 @@ public class RobotContainer {
     NamedCommands.registerCommand("Shoot", rc_autoShootC);
     NamedCommands.registerCommand("Intake", rc_KickerC);
 
-    autoChooser = AutoBuilder.buildAutoChooser();
+    autoChooser = AutoBuilder.buildAutoChooserWithOptionsModifier(
+      (stream) -> isItGoTime
+        ? stream.filter(auto -> auto.getName().startsWith("OS"))
+        : stream
+      );
+
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
 
